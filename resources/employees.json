@@ -1,6 +1,6 @@
 [
     {
-        "id": "1",
+        "id": 1,
         "name": "Rack",
         "lastName": "Lei",
         "email": "jackon@network.com",
@@ -13,7 +13,7 @@
         "phoneNumber": "7383627627"
     },
     {
-        "id": "2",
+        "id": 2,
         "name": "John",
         "lastName": "Doe",
         "email": "jhondoe@foo.com",
@@ -26,7 +26,7 @@
         "phoneNumber": "1283645645"
     },
     {
-        "id": "3",
+        "id": 3,
         "name": "Leila",
         "lastName": "Mills",
         "email": "mills@leila.com",
