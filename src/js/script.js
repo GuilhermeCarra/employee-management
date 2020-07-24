@@ -24,7 +24,6 @@ $(document).ready(function(){
             url: "library/employeeController.php"
         }).done(function(employees) {
             employees = JSON.parse(employees);
-            console.log(employees);
             $("#jsGrid").jsGrid({
                 width: "100%",
                 height: "400px",
