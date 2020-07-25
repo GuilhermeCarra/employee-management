@@ -9,9 +9,13 @@ $(document).ready(function(){
             url: "src/library/loginController.php",
             type: "post",
             data: {"email":email, "password":password, "login":true},
-            success: function(login){
-                if(login == '201') location.href = "src/dashboard.php";
-                if(login == '401') $("html").append('<span>Invalid credentials</span>');
+            statusCode: {
+                201: function () {
+                    location.href = "src/dashboard.php";
+                },
+                401: function () {
+                    $("html").append('<span>Invalid credentials</span>');
+                }
             }
         });
     });
