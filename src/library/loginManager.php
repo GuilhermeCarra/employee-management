@@ -9,11 +9,11 @@
                 $_SESSION['id'] = $user->userId;
                 $_SESSION['endTime'] = time()+600;
                 $foundUser = true;
-                return "201";
+                return "success";
             }
         }
         if ($foundUser == false) {
-            return "401";
+            return "unauthorized";
         }
     }
 
