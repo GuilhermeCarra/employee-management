@@ -43,14 +43,14 @@ $(document).ready(function(){
                 data: employees,
 
                 fields: [
-                    { name: "name", type: "text", width: 150, validate: "required" },
-                    { name: "email", type: "text", width: 50 },
-                    { name: "age", type: "number", width: 200 },
-                    { name: "streetAddress", type: "text", width: 40 },
-                    { name: "city", type: "text", width: 40},
-                    { name: "state", type: "text", validate: "required" },
-                    { name: "postalCode", type: "number", validate: "required" },
-                    { name: "phoneNumber", type: "number", validate: "required" },
+                    { name: "name", title: "Name", type: "text", width: 150, validate: "required" },
+                    { name: "email", title: "Email", type: "text", width: 150 },
+                    { name: "age", title: "Age", name: "Age", type: "number", width: 200 },
+                    { name: "streetAddress", title: "Street Address", type: "text", width: 40 },
+                    { name: "city", title: "City", type: "text", width: 40},
+                    { name: "state", title: "State", type: "text", validate: "required" },
+                    { name: "postalCode", title: "Postal Code", type: "number", validate: "required" },
+                    { name: "phoneNumber", title: "Phone Number", type: "number", validate: "required" },
                     { type: "control" }
                 ]
             });
