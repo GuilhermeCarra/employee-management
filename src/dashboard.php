@@ -19,8 +19,8 @@
 
             <!-- DASHBOARD / EMPLOYEE NAVIGATION -->
             <ul>
-                <li id="navDashboard">Dashboard</li>
-                <li id="navEmployee">Employee</li>
+                <a href="dashboard.php"><li>Dashboard</li></a>
+                <a href="employee.php"><li>Employee</li></a>
             </ul>
 
             <!-- LOGOUT BUTTON -->
