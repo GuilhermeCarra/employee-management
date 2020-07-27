@@ -79,7 +79,7 @@ $(document).ready(function(){
                     { name: "state", title: "State", type: "text", validate: "required" },
                     { name: "postalCode", title: "Postal Code", type: "number", validate: "required" },
                     { name: "phoneNumber", title: "Phone Number", type: "number", validate: "required" },
-                    { type: "control" }
+                    { type: "control", editButton: false }
                 ]
             });
         });
