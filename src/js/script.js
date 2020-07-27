@@ -57,7 +57,7 @@ $(document).ready(function(){
                         $.ajax({
                             type: "DELETE",
                             url: "library/employeeController.php",
-                            data: {"id":item.id},
+                            data: {"id":item.id}, // id = 1
                             success: function(response) {
                                 alert(response);
                             }
@@ -82,4 +82,5 @@ $(document).ready(function(){
             });
         });
     }
+
 });
