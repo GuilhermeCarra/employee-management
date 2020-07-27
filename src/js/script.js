@@ -28,6 +28,7 @@ $(document).ready(function(){
             url: "library/employeeController.php"
         }).done(function(employees) {
             employees = JSON.parse(employees);
+            console.log(employees);
             $("#jsGrid").jsGrid({
                 width: "100%",
                 height: "400px",
@@ -53,7 +54,7 @@ $(document).ready(function(){
                 fields: [
                     { name: "name", title: "Name", type: "text", width: 150, validate: "required" },
                     { name: "email", title: "Email", type: "text", width: 150 },
-                    { name: "age", title: "Age", name: "Age", type: "number", width: 200 },
+                    { name: "age", title: "Age", type: "number", width: 200 },
                     { name: "streetAddress", title: "Street Address", type: "text", width: 40 },
                     { name: "city", title: "City", type: "text", width: 40},
                     { name: "state", title: "State", type: "text", validate: "required" },
