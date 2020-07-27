@@ -17,9 +17,7 @@ switch($_SERVER["REQUEST_METHOD"]) {
 
     case "PUT":
         parse_str(file_get_contents("php://input"), $_PUT);
-        $updateEmployee = array($_PUT['name']);
-        echo $updateEmployee;
-        //echo updateEmployee($updateEmployee);
+        echo updateEmployee($_PUT['updateEmployee']);
         break;
 
     case "DELETE":
