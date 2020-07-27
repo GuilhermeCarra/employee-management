@@ -23,10 +23,10 @@ function addEmployee(array $newEmployee)
     $employeeObj->lastName = $newEmployee["lastName"];
     $employeeObj->email = $newEmployee["email"];
     $employeeObj->gender = $newEmployee["gender"];
-    $employeeObj->city = $newEmployee["city"];
+    $employeeObj->age = intval($newEmployee["age"]);
     $employeeObj->streetAddress = $newEmployee["streetAddress"];
+    $employeeObj->city = $newEmployee["city"];
     $employeeObj->state = $newEmployee["state"];
-    $employeeObj->age = $newEmployee["age"];
     $employeeObj->postalCode = $newEmployee["postalCode"];
     $employeeObj->phoneNumber = $newEmployee["phoneNumber"];
 
@@ -77,10 +77,10 @@ function updateEmployee(array $updateEmployee)
             $employee->lastName = $updateEmployee["lastName"];
             $employee->email = $updateEmployee["email"];
             $employee->gender = $updateEmployee["gender"];
-            $employee->city = $updateEmployee["city"];
+            $employee->age = intval($updateEmployee["age"]);
             $employee->streetAddress = $updateEmployee["streetAddress"];
+            $employee->city = $updateEmployee["city"];
             $employee->state = $updateEmployee["state"];
-            $employee->age = $updateEmployee["age"];
             $employee->postalCode = $updateEmployee["postalCode"];
             $employee->phoneNumber = $updateEmployee["phoneNumber"];
         }
