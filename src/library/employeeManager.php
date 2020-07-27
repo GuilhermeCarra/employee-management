@@ -87,7 +87,7 @@ function updateEmployee(array $updateEmployee)
     // Saving updated JSON on local file
     file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
 
-    return "Updated employee: ".$updateEmployee["name"]." ".$newEmployee["lastName"];
+    return "Updated employee: ".$updateEmployee["name"]." ".$updateEmployee["lastName"];
 }
 
 
