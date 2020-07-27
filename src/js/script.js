@@ -39,6 +39,14 @@ $(document).ready(function(){
                 autoload: true,
                 pageSize: 10,
                 deleteConfirm: "Do you really want to delete client?",
+                controller: {
+                    insertItem: function(item) {console.log(item)},
+                    updateItem: function(item) {console.log(item)},
+                    deleteItem: function(item) {
+                        
+                    }
+                },
+                rowClick: function(item) {console.log(item)},
 
                 data: employees,
 
