@@ -50,13 +50,18 @@ function deleteEmployee(string $id)
 
 function updateEmployee(array $updateEmployee)
 {
-// TODO implement it
+
 }
 
 
 function getEmployee(string $id)
 {
-// TODO implement it
+    $employeesJSON = json_decode(file_get_contents("../../resources/employees.json"));
+    foreach ($employeesJSON as $employee) {
+        if ($employee->id == $id) {
+            return json_encode($employee);
+        }
+    }
 }
 
 
