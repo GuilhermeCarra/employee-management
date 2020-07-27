@@ -8,6 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/jsgrid/css/jsgrid.css">
+    <link rel="stylesheet" href="../node_modules/jsgrid/css/theme.css">
 </head>
     <body>
         <form method="POST" action="library/loginController.php">
