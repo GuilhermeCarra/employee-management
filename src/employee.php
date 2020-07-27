@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../node_modules/jsgrid/css/jsgrid.css">
     <link rel="stylesheet" href="../node_modules/jsgrid/css/theme.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
     <body>
         <header>
@@ -31,7 +32,7 @@
         </header>
 
         <div>
-            <div class="" id="employeeAvatar"></div>
+            <div class="row" id="employeeAvatar"></div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="name">Name</label>

@@ -1,0 +1,14 @@
+.img-container {
+    margin-left: 5px;
+    border-radius: .25rem;
+    width: 120px !important;
+    height: 120px !important;
+    outline: 1px solid white;
+    outline-offset: -4px;
+    overflow: hidden;
+}
+
+.thumbnail {
+    height: auto;
+    max-width: 100%;
+}

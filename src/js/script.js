@@ -142,7 +142,7 @@ $(document).ready(function(){
             success: function(response) {
                 let avatars = JSON.parse(response);
                 for(let i = 0; i < avatars.length; i++) {
-                    $("#employeeAvatar").append('<img class="img-thumbnail col-2" src="'+avatars[i]+'" />');
+                    $("#employeeAvatar").append('<div class="img-container"><img class="thumbnail" src="'+avatars[i]+'" /></div>');
                 }
             }
         });
