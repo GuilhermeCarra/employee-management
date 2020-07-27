@@ -4,6 +4,10 @@ require('employeeManager.php');
 switch($_SERVER["REQUEST_METHOD"]) {
 
     case "GET":
+        if (isset($_GET['id'])){
+            echo getEmployee($_GET['id']);
+            break;
+        }
         echo getAllEmployees();
         break;
 
