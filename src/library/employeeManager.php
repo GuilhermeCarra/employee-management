@@ -15,6 +15,7 @@ function getAllEmployees() {
 function addEmployee(array $newEmployee)
 {
     $employeesJSON = json_decode(file_get_contents("../../resources/employees.json"));
+
     $employeeObj = new stdClass();
     $employeeObj->id = getNextIdentifier($employeesJSON);
     $employeeObj->name = $newEmployee["name"];
@@ -27,10 +28,10 @@ function addEmployee(array $newEmployee)
     $employeeObj->phoneNumber = $newEmployee["phoneNumber"];
 
     $employeesJSON[]=$employeeObj;
+    $employeesJSON = sortEmployeesById($employeesJSON);
     file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
 
-    return var_dump($employeeObj);
-
+    return "Created employee: ".$newEmployee["name"];
 }
 
 
@@ -88,4 +89,13 @@ function getNextIdentifier(array $employeesCollection): int
         }
     $counter= $counter+1;
     }
+}
+
+function sortEmployeesById($employeesJSON) {
+    function cmp($a, $b) {
+        return strcmp($a->id, $b->id);
+    }
+
+    usort($employeesJSON, "cmp");
+    return $employeesJSON;
 }
