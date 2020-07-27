@@ -15,6 +15,13 @@ switch($_SERVER["REQUEST_METHOD"]) {
         echo addEmployee($_POST["newEmployee"]);
         break;
 
+    case "PUT":
+        parse_str(file_get_contents("php://input"), $_PUT);
+        $updateEmployee = array($_PUT['name']);
+        echo $updateEmployee;
+        //echo updateEmployee($updateEmployee);
+        break;
+
     case "DELETE":
         parse_str(file_get_contents("php://input"), $_DELETE);
         echo deleteEmployee($_DELETE['id']);
