@@ -20,7 +20,8 @@ $(document).ready(function(){
         });
     });
 
-    appendJsGrid();
+    if ($("#jsGrid").length) appendJsGrid();
+
     function appendJsGrid() {
 
         $.ajax({
