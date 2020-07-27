@@ -57,7 +57,7 @@ $(document).ready(function(){
                         $.ajax({
                             type: "DELETE",
                             url: "library/employeeController.php",
-                            data: {"id":item.id}, // id = 1
+                            data: {"id":item.id},
                             success: function(response) {
                                 alert(response);
                             }
