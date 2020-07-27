@@ -16,6 +16,7 @@ function addEmployee(array $newEmployee)
 {
     $employeesJSON = json_decode(file_get_contents("../../resources/employees.json"));
 
+    // Making a new employee object to inset on JSON
     $employeeObj = new stdClass();
     $employeeObj->id = getNextIdentifier($employeesJSON);
     $employeeObj->name = $newEmployee["name"];
@@ -27,22 +28,36 @@ function addEmployee(array $newEmployee)
     $employeeObj->postalCode = $newEmployee["postalCode"];
     $employeeObj->phoneNumber = $newEmployee["phoneNumber"];
 
+    // Inserting employee in JSON variable
     $employeesJSON[]=$employeeObj;
+
+    // Sorting JSON array by Employee ID
     $employeesJSON = sortEmployeesById($employeesJSON);
+
+    // Saving JSON with the new Employee on local file
     file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
 
-    return "Created employee: ".$newEmployee["name"];
+    return "Created employee: ".$newEmployee["name"]." ".$newEmployee["lastName"];
 }
 
 
 function deleteEmployee(string $id)
 {
     $employeesJSON = json_decode(file_get_contents("../../resources/employees.json"));
+
+    // Searching for the Employee by his ID
     foreach ($employeesJSON as $key => $employee) {
         if ($id == $employee->id) {
-            $name = $employee->name;
+
+            // Saving Employee name to return it later
+            $name = $employee->name." ".$employee->lastName;
+
+            // Delete the employee from JSON array
             array_splice($employeesJSON,$key,1);
+
+            // Saving updated JSON on local file
             file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
+
             return "Deleted employee: ". $name;
         }
     }
@@ -53,6 +68,7 @@ function updateEmployee(array $updateEmployee)
 {
     $employeesJSON = json_decode(file_get_contents("../../resources/employees.json"));
 
+    // Searching for the Employee by his ID and change his informations
     foreach ($employeesJSON as $employee) {
         if ($updateEmployee["id"] == $employee->id) {
             $employee->name = $updateEmployee["name"];
@@ -68,14 +84,18 @@ function updateEmployee(array $updateEmployee)
         }
     }
 
+    // Saving updated JSON on local file
     file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
-    return "Updated employee: ".$updateEmployee["name"];
+
+    return "Updated employee: ".$updateEmployee["name"]." ".$newEmployee["lastName"];
 }
 
 
 function getEmployee(string $id)
 {
     $employeesJSON = json_decode(file_get_contents("../../resources/employees.json"));
+
+    // Searching for the Employee by his ID and then return it
     foreach ($employeesJSON as $employee) {
         if ($employee->id == $id) {
             return json_encode($employee);
@@ -98,17 +118,23 @@ function getQueryStringParameters(): array
 function getNextIdentifier(array $employeesCollection): int
 {
     $counter = 0;
+
     foreach ($employeesCollection as $key => $employee) {
+
+        // If it's the last Employee and there's no gap between Employees IDs, then the new Employee receives the last Employee's ID added by one.
         if($counter ==count($employeesCollection) - 1){
             return $employee->id+1;
         }
+
+        // If the ID number of the actual employee and the next one have difference greater than 1, the new Employee gets an ID of the actual Employee add by one.
         if($employee->id+1 != $employeesCollection[$key+1]->id){
             return $employee->id+1;
         }
-    $counter= $counter+1;
+    $counter = $counter+1;
     }
 }
 
+// Function to sort JSON file by Employee ID
 function sortEmployeesById($employeesJSON) {
     function cmp($a, $b) {
         return strcmp($a->id, $b->id);
