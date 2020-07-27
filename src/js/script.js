@@ -104,6 +104,7 @@ $(document).ready(function(){
                 $("#state").val(employee.state);
                 $("#postalCode").val(employee.postalCode);
                 $("#phoneNumber").val(employee.phoneNumber);
+                if(employee.gender == "woman") $("#gender").val("woman");
             }
         });
 
