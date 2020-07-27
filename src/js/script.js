@@ -42,10 +42,27 @@ $(document).ready(function(){
                 pageSize: 10,
                 deleteConfirm: "Do you really want to delete client?",
                 controller: {
-                    insertItem: function(item) {console.log(item)},
-                    updateItem: function(item) {console.log(item)},
+                    insertItem: function(item) {
+                        item.lastName = "";
+                        item.gender = "";
+                        $.ajax({
+                            type: "POST",
+                            url: "library/employeeController.php",
+                            data: {"newEmployee":item},
+                            success: function(response) {
+                                alert(response);
+                            }
+                        });
+                    },
                     deleteItem: function(item) {
-                        
+                        $.ajax({
+                            type: "DELETE",
+                            url: "library/employeeController.php",
+                            data: {"id":item.id},
+                            success: function(response) {
+                                alert(response);
+                            }
+                        });
                     }
                 },
                 rowClick: function(item) {console.log(item)},
