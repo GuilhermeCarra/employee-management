@@ -64,7 +64,9 @@ $(document).ready(function(){
                         });
                     }
                 },
-                rowClick: function(item) {console.log(item)},
+                rowClick: function(item) {
+                    location.href = "employee.php?id="+item.item.id;
+                },
 
                 data: employees,
 
