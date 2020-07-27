@@ -31,8 +31,7 @@
         </header>
 
         <div>
-            <div class="form-group col-md-6" id="employeeAvatar">
-            </div>
+            <div class="" id="employeeAvatar"></div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="name">Name</label>

@@ -135,6 +135,18 @@ $(document).ready(function(){
 
     // employee.php -- CREATE EMPLOYEE
     if ($("#employeePOST").length) {
+        // Getting avatars
+        $.ajax({
+            type: "GET",
+            url: "library/avatarsApi.php",
+            success: function(response) {
+                let avatars = JSON.parse(response);
+                for(let i = 0; i < avatars.length; i++) {
+                    $("#employeeAvatar").append('<img class="img-thumbnail col-2" src="'+avatars[i]+'" />');
+                }
+            }
+        });
+
         $('#employeePOST').click(function(){
             item = {
                 "id":id,
