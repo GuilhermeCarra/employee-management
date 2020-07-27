@@ -42,7 +42,7 @@
             </form>
         </header>
 
-        <form method="<?php echo $method ?>" action="employeeController.php">
+        <div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="">Name</label>
@@ -102,9 +102,9 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Save</button>
-            <button class="btn btn-secondary">Return</button>
-        </form>
+            <button id="employee<?php echo $method ?>" class="btn btn-primary">Save</button>
+            <button id="employeeReturn"class="btn btn-secondary">Return</button>
+        </div>
 
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script src="../node_modules/jsgrid/dist/jsgrid.min.js"></script>
