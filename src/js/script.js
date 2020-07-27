@@ -85,4 +85,78 @@ $(document).ready(function(){
         });
     }
 
+    // employee.php -- UPDATE EMPLOYEE
+    if ($("#employeePUT").length) {
+        const urlParams = new URLSearchParams(window.location.search);
+        var id = urlParams.get('id');
+        $.ajax({
+            type: "GET",
+            url: "library/employeeController.php",
+            data: {"id":id},
+            success: function(employee) {
+                employee = JSON.parse(employee);
+                $("#name").val(employee.name);
+                $("#lastName").val(employee.lastName);
+                $("#age").val(employee.age);
+                $("#email").val(employee.email);
+                $("#city").val(employee.city);
+                $("#streetAddress").val(employee.streetAddress);
+                $("#state").val(employee.state);
+                $("#postalCode").val(employee.postalCode);
+                $("#phoneNumber").val(employee.phoneNumber);
+            }
+        });
+
+        $('#employeePUT').click(function(){
+            item = {
+                    "id":id,
+                    "name":$("#name").val(),
+                    "lastName":$("#lastName").val(),
+                    "email":$("#email").val(),
+                    "gender":$("#gender").val(),
+                    "city":$("#city").val(),
+                    "streetAddress":$("#streetAddress").val(),
+                    "state":$("#state").val(),
+                    "age":$("#age").val(),
+                    "postalCode":$("#postalCode").val(),
+                    "phoneNumber":$("#phoneNumber").val(),
+            }
+            $.ajax({
+                type: "PUT",
+                url: "library/employeeController.php",
+                data: {"updateEmployee":item},
+                success: function(response) {
+                    alert(response);
+                }
+            });
+        });
+    }
+
+    // employee.php -- CREATE EMPLOYEE
+    if ($("#employeePOST").length) {
+        $('#employeePOST').click(function(){
+            item = {
+                "id":id,
+                "name":$("#name").val(),
+                "lastName":$("#lastName").val(),
+                "email":$("#email").val(),
+                "gender":$("#gender").val(),
+                "city":$("#city").val(),
+                "streetAddress":$("#streetAddress").val(),
+                "state":$("#state").val(),
+                "age":$("#age").val(),
+                "postalCode":$("#postalCode").val(),
+                "phoneNumber":$("#phoneNumber").val(),
+            }
+            $.ajax({
+                type: "POST",
+                url: "library/employeeController.php",
+                data: {"newEmployee":item},
+                success: function(response) {
+                    alert(response);
+                }
+            });
+        });
+    }
+
 });
