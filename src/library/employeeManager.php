@@ -20,11 +20,13 @@ function addEmployee(array $newEmployee)
     $employeeObj = new stdClass();
     $employeeObj->id = getNextIdentifier($employeesJSON);
     $employeeObj->name = $newEmployee["name"];
+    $employeeObj->lastName = $newEmployee["lastName"];
     $employeeObj->email = $newEmployee["email"];
-    $employeeObj->age = $newEmployee["age"];
-    $employeeObj->streetAddress = $newEmployee["streetAddress"];
+    $employeeObj->gender = $newEmployee["gender"];
     $employeeObj->city = $newEmployee["city"];
+    $employeeObj->streetAddress = $newEmployee["streetAddress"];
     $employeeObj->state = $newEmployee["state"];
+    $employeeObj->age = $newEmployee["age"];
     $employeeObj->postalCode = $newEmployee["postalCode"];
     $employeeObj->phoneNumber = $newEmployee["phoneNumber"];
 
