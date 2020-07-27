@@ -9,11 +9,6 @@
 
 function getAllEmployees() {
     $employeesJSON = json_decode(file_get_contents("../../resources/employees.json"));
-    foreach($employeesJSON as $employee) {
-        unset($employee->id);
-        unset($employee->lastName);
-        unset($employee->gender);
-    }
     return json_encode($employeesJSON);
 }
 
