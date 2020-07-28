@@ -136,20 +136,7 @@ $(document).ready(function(){
     // employee.php -- CREATE EMPLOYEE
     if ($("#employeePOST").length) {
         // Getting avatars
-        $.ajax({
-            type: "GET",
-            url: "library/avatarsApi.php",
-            success: function(response) {
-                let avatars = JSON.parse(response);
-                for(let i = 0; i < avatars.length; i++) {
-                    $("#employeeAvatar").append('<div class="img-container"><img class="thumbnail" src="'+avatars[i]+'" /></div>');
-                }
-                $(".img-container").click(function(){
-                    $(".active-avatar").removeClass("active-avatar");
-                    $(this).addClass("active-avatar");
-                });
-            }
-        });
+        showAvatarSelection();
 
         $('#employeePOST').click(function(){
             item = {
@@ -173,6 +160,23 @@ $(document).ready(function(){
                     alert(response);
                 }
             });
+        });
+    }
+
+    function showAvatarSelection() {
+        $.ajax({
+            type: "GET",
+            url: "library/avatarsApi.php",
+            success: function(response) {
+                let avatars = JSON.parse(response);
+                for(let i = 0; i < avatars.length; i++) {
+                    $("#employeeAvatar").append('<div class="img-container"><img class="thumbnail" src="'+avatars[i]+'" /></div>');
+                }
+                $(".img-container").click(function(){
+                    $(".active-avatar").removeClass("active-avatar");
+                    $(this).addClass("active-avatar");
+                });
+            }
         });
     }
 
