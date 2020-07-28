@@ -93,11 +93,8 @@ $(document).ready(function(){
         });
     }
 
-    // employee.php -- UPDATE EMPLOYEE
-    if ($("#employeePUT").length) {
-        // Getting Employee ID on URL Parameters to request the Employee info to php
-        const urlParams = new URLSearchParams(window.location.search);
-        var id = urlParams.get('id');
+    // employee.php -- UPDATE AVATAR
+    if ($("#employeeAvatar").length) {
 
         // Click event to select an avatar from the list
         $(".img-container").click(function(){
@@ -105,113 +102,24 @@ $(document).ready(function(){
             $(this).addClass("active-avatar");
         });
 
-        $.ajax({
-            type: "GET",
-            url: "library/employeeController.php",
-            data: {"id":id},
-            success: function(employee) {
-                employee = JSON.parse(employee);
-                // Filling inputs with the Employee information
-                $("#name").val(employee.name);
-                $("#lastName").val(employee.lastName);
-                $("#age").val(employee.age);
-                $("#email").val(employee.email);
-                $("#city").val(employee.city);
-                $("#streetAddress").val(employee.streetAddress);
-                $("#state").val(employee.state);
-                $("#postalCode").val(employee.postalCode);
-                $("#phoneNumber").val(employee.phoneNumber);
-                if(employee.gender == "woman") $("#gender").val("woman");
-
-                // Verify if Employee have an avatar
-                if(employee.hasOwnProperty('avatar')) {
-                    // Print it if Employee has an avatar
-                    $("#employeeAvatar").empty();
-                    $("#employeeAvatar").addClass('justify-content-center');
-                    $("#employeeAvatar").append(
-                        $('<div class="img-container"><img class="thumbnail" src="'+employee.avatar+'"></div>').click(function(){removeEmployeeAvatar(id)})
-                    );
-                    // And set a click event to delete it and put a button to add another one
-                    $(".img-container").click(function(){
-                        $(".img-container").remove();
-                    });
-                }
-            }
-        });
-
-        // Click event on button to save the new employee on JSON
-        $('#employeePUT').click(function(){
-            item = {
-                    "id":id,
-                    "name":$("#name").val(),
-                    "lastName":$("#lastName").val(),
-                    "email":$("#email").val(),
-                    "gender":$("#gender").val(),
-                    "city":$("#city").val(),
-                    "streetAddress":$("#streetAddress").val(),
-                    "state":$("#state").val(),
-                    "age":$("#age").val(),
-                    "postalCode":$("#postalCode").val(),
-                    "phoneNumber":$("#phoneNumber").val(),
-            }
-            if ($(".active-avatar").length) item.avatar = $(".active-avatar img").attr("src");
+        // Verify if Employee has an avatar
+        if($("#employeeAvatar").children().length == 1) {
+            // Print it if Employee has an avatar
+            $("#employeeAvatar").addClass('justify-content-center');
+            $("#employeeAvatar").append(
+                $('<div class="img-container"><img class="thumbnail" src="'+employee.avatar+'"></div>').click(function(){removeEmployeeAvatar(id)})
+            );
+            // And set a click event to delete it and put a button to add another one
+            $(".img-container").click(function(){
+                $(".img-container").remove();
+            });
+        }
+        // Form validation
+        $('#submitBtn').click(function(){
             if ( validateForm() ) {
-                $.ajax({
-                    type: "PUT",
-                    url: "library/employeeController.php",
-                    data: {"updateEmployee":item},
-                    success: function(response) {
-                        $('#employeeAlert').text(response);
-                        $('#employeeAlert').slideDown();
-                        setTimeout(() => {
-                            location.reload();
-                        }, 2500);
-                    }
-                });
-            }
-        });
-    }
-
-    // employee.php -- CREATE EMPLOYEE FORM
-    if ($("#employeePOST").length) {
-
-        // Click event to select an avatar from the list
-        $(".img-container").click(function(){
-            $(".active-avatar").removeClass("active-avatar");
-            $(this).addClass("active-avatar");
-        });
-
-        // Getting all inputs values to save the Employee
-        $('#employeePOST').click(function(){
-            var item = {
-                "id":id,
-                "name":$("#name").val(),
-                "lastName":$("#lastName").val(),
-                "email":$("#email").val(),
-                "gender":$("#gender").val(),
-                "city":$("#city").val(),
-                "streetAddress":$("#streetAddress").val(),
-                "state":$("#state").val(),
-                "age":$("#age").val(),
-                "postalCode":$("#postalCode").val(),
-                "phoneNumber":$("#phoneNumber").val(),
-            }
-            if ($(".active-avatar").length) item.avatar = $(".active-avatar img").attr("src");
-            // Ajax post with employee object to save it on JSON
-            if ( validateForm() ) {
-                $.ajax({
-                    type: "POST",
-                    url: "library/employeeController.php",
-                    data: {"newEmployee":item},
-                    success: function(response) {
-                        let employee = JSON.parse(response);
-                        $('#employeeAlert').text('Created Employee:'+employee.name+' '+employee.lastName+'! Redirecting to employee page...');
-                        $('#employeeAlert').slideDown();
-                        setTimeout(() => {
-                            location.href = "employee.php?id="+employee.id;
-                        }, 2500);
-                    }
-                });
+                $('#hiddenSubmitBtn');
+            } else {
+                console.log("not ok")
             }
         });
     }

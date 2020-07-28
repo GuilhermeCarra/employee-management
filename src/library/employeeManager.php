@@ -97,7 +97,7 @@ function updateEmployee(array $updateEmployee)
 
 function getEmployee(string $id)
 {
-    $employeesJSON = json_decode(file_get_contents("../../resources/employees.json"));
+    $employeesJSON = json_decode(file_get_contents("../resources/employees.json"));
 
     // Searching for the Employee by his ID and then return it
     foreach ($employeesJSON as $employee) {

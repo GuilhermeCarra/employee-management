@@ -1,7 +1,12 @@
 <?php
-    require('library/sessionHelper.php');
-    $method = 'POST';
-    if (isset($_GET['id'])) $method = 'PUT';
+    //require('library/sessionHelper.php');
+    $method = "POST";
+    if (isset($_GET['id'])) {
+        require('library/employeeController.php');
+        $method = "PUT";
+        $employee = json_decode(getEmployee($_GET['id']));
+        $gender = $employee->gender;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -26,29 +31,29 @@
             <div class="col-1"></div>
             <div class="row form-employee">
                 <div class="col-2"></div>
-                <div class="col-8">
+                <form class="col-8" method="POST" action="library/employeeController.php">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name">
+                            <input type="text" class="form-control" id="name" name="name" value="<?php if(isset($employee)) echo $employee->name ?>">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="lastName">Last Name</label>
-                            <input type="text" class="form-control" id="lastName">
+                            <input type="text" class="form-control" id="lastName" name="lastName" value="<?php if(isset($employee)) echo $employee->lastName ?>">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="email">Email address</label>
-                            <input type="email" class="form-control" id="email" placeholder="">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="" value="<?php if(isset($employee)) echo $employee->email ?>">
                             <small class="text-info">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="gender">Gender</label>
-                            <select id="gender" class="form-control">
-                                <option value="man">Man</option>
-                                <option value="woman">Woman</option>
+                            <select id="gender" name="gender" class="form-control">
+                                <option value="man" <?php if(isset($gender) && $gender == 'man') echo 'selected' ?>>Man</option>
+                                <option value="woman" <?php if(isset($gender) && $gender == 'woman') echo 'selected' ?>>Woman</option>
                             </select>
                         </div>
                     </div>
@@ -56,40 +61,43 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="city">City</label>
-                            <input type="text" class="form-control" id="city" placeholder="">
+                            <input type="text" class="form-control" id="city" name="city" placeholder="" value="<?php if(isset($employee)) echo $employee->city ?>">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="streetAddress">Street Address</label>
-                            <input type="text" class="form-control" id="streetAddress" placeholder="">
+                            <input type="text" class="form-control" id="streetAddress" name="streetAddress" placeholder="" value="<?php if(isset($employee)) echo $employee->streetAddress ?>">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="state">State</label>
-                            <input type="text" class="form-control" id="state" placeholder="">
+                            <input type="text" class="form-control" id="state" name="state" placeholder="" value="<?php if(isset($employee)) echo $employee->state ?>">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="age">Age</label>
-                            <input type="number" class="form-control" id="age" placeholder="">
+                            <input type="number" class="form-control" id="age" name="age" placeholder="" value="<?php if(isset($employee)) echo $employee->age ?>">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="postalCode">Postal Code</label>
-                            <input type="number" class="form-control" id="postalCode" placeholder="">
+                            <input type="number" class="form-control" id="postalCode" name="postalCode" placeholder="" value="<?php if(isset($employee)) echo $employee->postalCode ?>">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="phoneNumber">Phone Number</label>
-                            <input type="tel" class="form-control" id="phoneNumber" placeholder="">
+                            <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="" value="<?php if(isset($employee)) echo $employee->phoneNumber ?>">
                         </div>
                     </div>
                     <div class="buttons-employeed">
-                        <button id="employee<?php echo $method ?>" class="btn btn-outline-dark">Save</button>
+                        <button id="hiddenSubmitBtn" type="submit" class="d-none" name="<?php echo $method ?>" class="btn btn-outline-dark">Save</button>
+                        <button id="submitBtn class="btn btn-outline-dark">Save</button>
                         <a href="dashboard.php"><button id="employeeReturn" class="btn btn-dark ">Return</button></a>
                     </div>
-                </div>
+                    <input class="d-none" id="avatarInput" type="text" <?php if(isset($employee->avatar)) echo 'name="avatar" value="'.$employee->avatar.'"' ?>>
+                    <input class="d-none" type="text" name="id" value="<?php if(isset($employee)) echo $employee->id ?>">
+                </form>
                 <div class="col-2"></div>
             </div>
             <div id="employeeAlert"></div>

@@ -6,16 +6,19 @@ switch($_SERVER["REQUEST_METHOD"]) {
     case "GET":
 
         // Getting one specific Employee
-        if (isset($_GET['id'])){
-            echo getEmployee($_GET['id']);
-            break;
-        }
-
+        if (isset($_GET['id'])) break;
         //Getting all Employees
         echo getAllEmployees();
         break;
 
     case "POST":
+
+        // Updating Employee
+        if (isset($_POST['PUT'])) {
+            updateEmployee($_POST);
+            break;
+        }
+        // Creating Employee
         echo addEmployee($_POST["newEmployee"]);
         break;
 
@@ -28,13 +31,10 @@ switch($_SERVER["REQUEST_METHOD"]) {
             break;
         }
 
-        // Updating Employee
-        echo updateEmployee($_PUT['updateEmployee']);
-        break;
-
     case "DELETE":
         parse_str(file_get_contents("php://input"), $_DELETE);
         echo deleteEmployee($_DELETE['id']);
         break;
 }
+
 ?>
