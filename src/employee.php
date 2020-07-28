@@ -32,7 +32,7 @@
         </header>
 
         <div>
-            <div class="row" id="employeeAvatar"></div>
+            <?php include('imageGallery.php')?>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="name">Name</label>
