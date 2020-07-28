@@ -50,14 +50,22 @@ $(document).ready(function(){
                         $.ajax({
                             type: "POST",
                             url: "library/employeeController.php",
-                            data: {"newEmployee":item},
-                            success: function(response) {
-                                let employee = JSON.parse(response);
-                                $('#employeeAlert').text('Created Employee:'+employee.name);
-                                $('#employeeAlert').slideDown();
-                                setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
+                            data: {
+                                "name":item.name,
+                                "lastName":item.lastName,
+                                "email":item.email,
+                                "gender":item.gender,
+                                "city":item.city,
+                                "streetAddress":item.streetAddress,
+                                "state":item.state,
+                                "age":item.age,
+                                "postalCode":item.postalCode,
+                                "phoneNumber":item.phoneNumber
                             }
                         });
+                        $('#employeeAlert').text('Created Employee:'+item.name);
+                        $('#employeeAlert').slideDown();
+                        setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
                     },
                     deleteItem: function(item) {
                         $.ajax({
@@ -96,20 +104,19 @@ $(document).ready(function(){
     // employee.php -- UPDATE AVATAR
     if ($("#employeeAvatar").length) {
 
-        // Verify if a employee was created to show a message
+        // Verify with query string if a employee was created to show a message
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('employeeCreated')) {
             $('#employeeAlert').text('Employee Created Suscessfully');
             $('#employeeAlert').slideDown();
             setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
         }
-        // Verify if a employee was updated to show a message
+        // Verify with query string if a employee was updated to show a message
         if (urlParams.has('employeeUpdated')) {
             $('#employeeAlert').text('Employee Updated Suscessfully');
             $('#employeeAlert').slideDown();
             setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
         }
-
 
         // Click event to Return Button
         $('#employeeReturnBtn').click(function(){
@@ -130,7 +137,7 @@ $(document).ready(function(){
         if($("#employeeAvatar").children().length == 1) {
             // Center image if Employee has an avatar
             $("#employeeAvatar").addClass('justify-content-center');
-            // And set a click event to delete it and put a button to add another one
+            // And set a click event to delete it
             $(".img-container").click(removeEmployeeAvatar);
         }
 
