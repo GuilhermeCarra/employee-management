@@ -1,5 +1,6 @@
 <!-- TODO Application entry point. Login view -->
 <?php
+    require('library/sessionHelper.php');
 ?>
 
 <!DOCTYPE html>

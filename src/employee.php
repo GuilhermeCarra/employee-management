@@ -1,6 +1,7 @@
 <?php
-$method = 'POST';
-if (isset($_GET['id'])) $method = 'PUT';
+    require('library/sessionHelper.php');
+    $method = 'POST';
+    if (isset($_GET['id'])) $method = 'PUT';
 ?>
 
 <!DOCTYPE html>

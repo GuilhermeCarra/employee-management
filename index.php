@@ -1,5 +1,9 @@
 <!-- TODO Application entry point. Login view -->
 <?php
+    session_start();
+    if(isset($_SESSION['name'])) {
+        header('Location: src/dashboard.php');
+    }
 ?>
 
 <!DOCTYPE html>
