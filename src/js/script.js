@@ -155,18 +155,20 @@ $(document).ready(function(){
                     "phoneNumber":$("#phoneNumber").val(),
             }
             if ($(".active-avatar").length) item.avatar = $(".active-avatar img").attr("src");
-            $.ajax({
-                type: "PUT",
-                url: "library/employeeController.php",
-                data: {"updateEmployee":item},
-                success: function(response) {
-                    $('#employeeAlert').text(response);
-                    $('#employeeAlert').slideDown();
-                    setTimeout(() => {
-                        location.reload();
-                    }, 2500);
-                }
-            });
+            if (validateForm()) {
+                $.ajax({
+                    type: "PUT",
+                    url: "library/employeeController.php",
+                    data: {"updateEmployee":item},
+                    success: function(response) {
+                        $('#employeeAlert').text(response);
+                        $('#employeeAlert').slideDown();
+                        setTimeout(() => {
+                            location.reload();
+                        }, 2500);
+                    }
+                });
+            }
         });
     }
 
@@ -196,19 +198,21 @@ $(document).ready(function(){
             }
             if ($(".active-avatar").length) item.avatar = $(".active-avatar img").attr("src");
             // Ajax post with employee object to save it on JSON
-            $.ajax({
-                type: "POST",
-                url: "library/employeeController.php",
-                data: {"newEmployee":item},
-                success: function(response) {
-                    let employee = JSON.parse(response);
-                    $('#employeeAlert').text('Created Employee:'+employee.name+' '+employee.lastName+'! Redirecting to employee page...');
-                    $('#employeeAlert').slideDown();
-                    setTimeout(() => {
-                        location.href = "employee.php?id="+employee.id;
-                    }, 2500);
-                }
-            });
+            if (validateForm()) {
+                $.ajax({
+                    type: "POST",
+                    url: "library/employeeController.php",
+                    data: {"newEmployee":item},
+                    success: function(response) {
+                        let employee = JSON.parse(response);
+                        $('#employeeAlert').text('Created Employee:'+employee.name+' '+employee.lastName+'! Redirecting to employee page...');
+                        $('#employeeAlert').slideDown();
+                        setTimeout(() => {
+                            location.href = "employee.php?id="+employee.id;
+                        }, 2500);
+                    }
+                });
+            }
         });
     }
 
