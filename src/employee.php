@@ -10,8 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../node_modules/jsgrid/css/jsgrid.css">
-    <link rel="stylesheet" href="../node_modules/jsgrid/css/theme.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
     <body>
@@ -95,6 +93,7 @@
             <button id="employee<?php echo $method ?>" class="btn btn-primary">Save</button>
             <a href="dashboard.php"><button id="employeeReturn"class="btn btn-secondary">Return</button></a>
         </div>
+        <div id="employeeAlert"></div>
 
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script src="../node_modules/jsgrid/dist/jsgrid.min.js"></script>

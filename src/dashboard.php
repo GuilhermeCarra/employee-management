@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../node_modules/jsgrid/css/jsgrid.css">
     <link rel="stylesheet" href="../node_modules/jsgrid/css/theme.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
     <body>
         <header>
@@ -30,6 +31,8 @@
         </header>
 
         <div id="jsGrid"></div>
+
+        <div id="employeeAlert"></div>
 
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script src="../node_modules/jsgrid/dist/jsgrid.min.js"></script>

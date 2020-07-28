@@ -49,7 +49,9 @@ $(document).ready(function(){
                             url: "library/employeeController.php",
                             data: {"newEmployee":item},
                             success: function(response) {
-                                alert(response);
+                                $('#employeeAlert').text(response);
+                                $('#employeeAlert').slideDown();
+                                setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
                             }
                         });
                     },
@@ -59,7 +61,9 @@ $(document).ready(function(){
                             url: "library/employeeController.php",
                             data: {"id":item.id},
                             success: function(response) {
-                                alert(response);
+                                $('#employeeAlert').text(response+" Refresing page...");
+                                $('#employeeAlert').slideDown();
+                                setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
                             }
                         });
                     }
@@ -150,8 +154,11 @@ $(document).ready(function(){
                 url: "library/employeeController.php",
                 data: {"updateEmployee":item},
                 success: function(response) {
-                    alert(response);
-                    location.reload();
+                    $('#employeeAlert').text(response);
+                    $('#employeeAlert').slideDown();
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2500);
                 }
             });
         });
@@ -188,7 +195,11 @@ $(document).ready(function(){
                 url: "library/employeeController.php",
                 data: {"newEmployee":item},
                 success: function(response) {
-                    alert(response);
+                    $('#employeeAlert').text(response);
+                    $('#employeeAlert').slideDown();
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2500);
                 }
             });
         });

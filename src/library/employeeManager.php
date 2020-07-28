@@ -40,7 +40,7 @@ function addEmployee(array $newEmployee)
     // Saving JSON with the new Employee on local file
     file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
 
-    return "Created employee: ".$newEmployee["name"]." ".$newEmployee["lastName"];
+    return "Created employee: ".$newEmployee["name"]." ".$newEmployee["lastName"]."!";
 }
 
 
@@ -61,7 +61,7 @@ function deleteEmployee(string $id)
             // Saving updated JSON on local file
             file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
 
-            return "Deleted employee: ". $name;
+            return "Deleted employee: ". $name."!";
         }
     }
 }
@@ -91,7 +91,7 @@ function updateEmployee(array $updateEmployee)
     // Saving updated JSON on local file
     file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
 
-    return "Updated employee: ".$updateEmployee["name"]." ".$updateEmployee["lastName"];
+    return "Updated Employee: ".$updateEmployee["name"]." ".$updateEmployee["lastName"]."! Refreshing page...";
 }
 
 
