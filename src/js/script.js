@@ -139,6 +139,7 @@ $(document).ready(function(){
             }
         });
 
+        // Click event on button to save the new employee on JSON
         $('#employeePUT').click(function(){
             item = {
                     "id":id,
