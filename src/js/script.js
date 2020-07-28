@@ -50,7 +50,8 @@ $(document).ready(function(){
                             url: "library/employeeController.php",
                             data: {"newEmployee":item},
                             success: function(response) {
-                                $('#employeeAlert').text(response);
+                                let employee = JSON.parse(response);
+                                $('#employeeAlert').text('Created Employee:'+employee.name);
                                 $('#employeeAlert').slideDown();
                                 setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
                             }
@@ -62,7 +63,7 @@ $(document).ready(function(){
                             url: "library/employeeController.php",
                             data: {"id":item.id},
                             success: function(response) {
-                                $('#employeeAlert').text(response+" Refresing page...");
+                                $('#employeeAlert').text(response);
                                 $('#employeeAlert').slideDown();
                                 setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
                             }
@@ -176,7 +177,7 @@ $(document).ready(function(){
 
         // Getting all inputs values to save the Employee
         $('#employeePOST').click(function(){
-            item = {
+            var item = {
                 "id":id,
                 "name":$("#name").val(),
                 "lastName":$("#lastName").val(),
@@ -196,10 +197,11 @@ $(document).ready(function(){
                 url: "library/employeeController.php",
                 data: {"newEmployee":item},
                 success: function(response) {
-                    $('#employeeAlert').text(response);
+                    let employee = JSON.parse(response);
+                    $('#employeeAlert').text('Created Employee:'+employee.name+' '+employee.lastName+'! Redirecting to employee page...');
                     $('#employeeAlert').slideDown();
                     setTimeout(() => {
-                        location.reload();
+                        location.href = "employee.php?id="+employee.id;
                     }, 2500);
                 }
             });

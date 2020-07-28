@@ -40,7 +40,7 @@ function addEmployee(array $newEmployee)
     // Saving JSON with the new Employee on local file
     file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
 
-    return "Created employee: ".$newEmployee["name"]." ".$newEmployee["lastName"]."!";
+    return json_encode($employeeObj);
 }
 
 

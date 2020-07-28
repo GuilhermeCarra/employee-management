@@ -21,7 +21,6 @@
 
 .img-container {
     margin-left: 5px;
-    margin-bottom: 70px;
     border-radius: .25rem;
     width: 8vw !important;
     height: 8vw !important;
@@ -55,15 +54,17 @@
 /* employee.php -- ALERT MESSAGE START */
 #employeeAlert {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 20vw;
     width: 60vw;
-    padding: 8px 0;
+    padding: 15px 0;
     text-align: center;
-    background-color: rgba(0, 255, 21, 0.185);
-    color: rgb(1, 102, 51);
+    background-color: rgba(155, 233, 161, 0.938);
+    color: rgb(29, 82, 55);
     border-radius: 3px;
+    font-weight: bold;
+    box-shadow: rgba(66, 66, 66, 0.507) -2px 2px 1px 1px;
 }
 
 /* employee.php -- ALERT MESSAGE END */

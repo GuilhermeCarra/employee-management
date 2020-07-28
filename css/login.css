@@ -109,4 +109,5 @@
     text-align: center;
     border-radius: 6px;
     border: 1px solid rgba(128, 0, 128, 0.178);
+    box-shadow: rgba(66, 66, 66, 0.507) -2px 2px 1px 1px;
 }
