@@ -2,7 +2,6 @@
 
 function getAvatars() {
     //$avatarsResponse = json_decode(file_get_contents("../resources/images_mock.json"));
-    $key = '6301675F-934441A8-BFE795BC-BFC60F6B';
 
     $ch = curl_init();
     curl_setopt_array($ch, array(
