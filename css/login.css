@@ -51,13 +51,13 @@
     padding: 2px 15px 2px 35px;
     border:none;
     border-radius: 50px;
-     
+
 }
 
 .form-control::placeholder{
-     color: rgba(0,0,0,0.7);
-     font-size:14px;
-     text-transform: capitalize;
+    color: rgba(0,0,0,0.7);
+    font-size:14px;
+    text-transform: capitalize;
 }
 
 .loginBtn{
