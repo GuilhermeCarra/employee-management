@@ -88,8 +88,8 @@ if (isset($_GET['id'])) $method = 'PUT';
                             </div>
                         </div>
                         <div class="buttons-employeed">
-                            <button id="employee<?php echo $method ?>" class="btn btn-outline-dark">Save</button>
-                            <a href="dashboard.php"><button id="employeeReturn" class="btn btn-dark ">Return</button></a>
+                            <a href="dashboard.php"><button id="employeeReturn" class="btn btn-outline-dark">Return</button></a>
+                            <button id="employee<?php echo $method ?>" class="btn btn-dark">Save</button>
                         </div>
                     </form>
                 </div>
