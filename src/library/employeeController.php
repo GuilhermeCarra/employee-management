@@ -1,5 +1,4 @@
 <?php
-require('sessionHelper.php');
 require('employeeManager.php');
 
 switch($_SERVER["REQUEST_METHOD"]) {
