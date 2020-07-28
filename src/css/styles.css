@@ -1,3 +1,6 @@
+
+/* employee.php -- AVATAR STYLES START */
+
 .img-container {
     margin-left: 5px;
     border-radius: .25rem;
@@ -6,9 +9,26 @@
     outline: 1px solid white;
     outline-offset: -4px;
     overflow: hidden;
+    cursor: pointer;
+}
+
+.img-container:hover {
+    outline: 2px solid rgb(255, 255, 255);
+    outline-offset: 0px;
+    transition: 200ms ease-in-out;
+    border: 3.5px solid royalblue;
+}
+
+.active-avatar {
+    outline: 3px solid rgb(255, 255, 255);
+    outline-offset: 0px;
+    transition: 200ms ease-in-out;
+    border: 3.5px solid royalblue;
 }
 
 .thumbnail {
     height: auto;
     max-width: 100%;
 }
+
+/* employee.php -- AVATAR STYLES END */

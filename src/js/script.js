@@ -144,6 +144,10 @@ $(document).ready(function(){
                 for(let i = 0; i < avatars.length; i++) {
                     $("#employeeAvatar").append('<div class="img-container"><img class="thumbnail" src="'+avatars[i]+'" /></div>');
                 }
+                $(".img-container").click(function(){
+                    $(".active-avatar").removeClass("active-avatar");
+                    $(this).addClass("active-avatar");
+                });
             }
         });
 
