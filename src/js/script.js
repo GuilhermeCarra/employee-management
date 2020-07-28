@@ -14,7 +14,8 @@ $(document).ready(function(){
                     location.href = "src/dashboard.php";
                 },
                 401: function () {
-                    $("html").append('<span>Invalid credentials</span>');
+                    $("#loginError").text('Invalid credentials');
+                    $("#loginError").slideDown();
                 }
             }
         });
