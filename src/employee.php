@@ -41,7 +41,7 @@ if (isset($_GET['id'])) $method = 'PUT';
                         <div class="form-group col-md-6">
                             <label for="email">Email address</label>
                             <input type="text" class="form-control" id="email" placeholder="">
-                            <small>We'll never share your email with anyone else.</small>
+                            <small class="text-info">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="gender">Gender</label>
