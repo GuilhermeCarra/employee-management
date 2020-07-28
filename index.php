@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/login.css">
-    <title>Document</title>
+    <title>Employee Management</title>
+    <link rel="icon" type="image/png" href="../src/img/favicon.png">
 </head>
 
 <body>
