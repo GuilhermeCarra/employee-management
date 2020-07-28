@@ -96,41 +96,64 @@ $(document).ready(function(){
     // employee.php -- UPDATE AVATAR
     if ($("#employeeAvatar").length) {
 
+        // Verify if a employee was created to show a message
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('employeeCreated')) {
+            $('#employeeAlert').text('Employee Created Suscessfully');
+            $('#employeeAlert').slideDown();
+            setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
+        }
+        // Verify if a employee was updated to show a message
+        if (urlParams.has('employeeUpdated')) {
+            $('#employeeAlert').text('Employee Updated Suscessfully');
+            $('#employeeAlert').slideDown();
+            setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
+        }
+
+
+        // Click event to Return Button
+        $('#employeeReturnBtn').click(function(){
+            event.preventDefault();
+            location.href = "dashboard.php";
+        });
+
         // Click event to select an avatar from the list
         $(".img-container").click(function(){
             $(".active-avatar").removeClass("active-avatar");
             $(this).addClass("active-avatar");
+            let url = ($(".active-avatar img").attr("src"))
+            $('#avatarInput').attr("value",url);
+            $('#avatarInput').attr("name","avatar");
         });
 
         // Verify if Employee has an avatar
         if($("#employeeAvatar").children().length == 1) {
-            // Print it if Employee has an avatar
+            // Center image if Employee has an avatar
             $("#employeeAvatar").addClass('justify-content-center');
-            $("#employeeAvatar").append(
-                $('<div class="img-container"><img class="thumbnail" src="'+employee.avatar+'"></div>').click(function(){removeEmployeeAvatar(id)})
-            );
             // And set a click event to delete it and put a button to add another one
-            $(".img-container").click(function(){
-                $(".img-container").remove();
-            });
+            $(".img-container").click(removeEmployeeAvatar);
         }
+
         // Form validation
         $('#submitBtn').click(function(){
+            event.preventDefault();
             if ( validateForm() ) {
-                $('#hiddenSubmitBtn');
+                $('#hiddenSubmitBtn').click();
             } else {
                 console.log("not ok")
             }
         });
     }
 
-    function removeEmployeeAvatar(id) {
+    function removeEmployeeAvatar() {
+        const urlParams = new URLSearchParams(window.location.search);
+        var id = urlParams.get('id');
         $.ajax({
             type: "PUT",
             url: "library/employeeController.php",
             data: {"removeAvatar":id},
             success: function() {
-                location.reload();
+                location.href = "employee.php?id="+id;
             }
         });
     }
@@ -146,10 +169,10 @@ $(document).ready(function(){
     const postalCode = document.getElementById('postalCode');
     const phoneNumber = document.getElementById('phoneNumber');
 
-    form.addEventListener('')
+    //form.addEventListener('')
 
     function validateForm() {
-
+        return true;
     }
 
 

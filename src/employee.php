@@ -1,5 +1,5 @@
 <?php
-    //require('library/sessionHelper.php');
+    require('library/sessionHelper.php');
     $method = "POST";
     if (isset($_GET['id'])) {
         require('library/employeeController.php');
@@ -92,8 +92,8 @@
                     </div>
                     <div class="buttons-employeed">
                         <button id="hiddenSubmitBtn" type="submit" class="d-none" name="<?php echo $method ?>" class="btn btn-outline-dark">Save</button>
-                        <button id="submitBtn class="btn btn-outline-dark">Save</button>
-                        <a href="dashboard.php"><button id="employeeReturn" class="btn btn-dark ">Return</button></a>
+                        <button id="submitBtn" class="btn btn-outline-dark">Save</button>
+                        <button id="employeeReturnBtn" class="btn btn-dark ">Return</button>
                     </div>
                     <input class="d-none" id="avatarInput" type="text" <?php if(isset($employee->avatar)) echo 'name="avatar" value="'.$employee->avatar.'"' ?>>
                     <input class="d-none" type="text" name="id" value="<?php if(isset($employee)) echo $employee->id ?>">

@@ -19,7 +19,7 @@ switch($_SERVER["REQUEST_METHOD"]) {
             break;
         }
         // Creating Employee
-        echo addEmployee($_POST["newEmployee"]);
+        echo addEmployee($_POST);
         break;
 
     case "PUT":

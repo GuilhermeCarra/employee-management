@@ -40,7 +40,7 @@ function addEmployee(array $newEmployee)
     // Saving JSON with the new Employee on local file
     file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
 
-    return json_encode($employeeObj);
+    header('Location: ../employee.php?employeeCreated&id='.$employeeObj->id);
 }
 
 
@@ -91,7 +91,7 @@ function updateEmployee(array $updateEmployee)
     // Saving updated JSON on local file
     file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
 
-    return "Updated Employee: ".$updateEmployee["name"]." ".$updateEmployee["lastName"]."! Refreshing page...";
+    header('Location: ../employee.php?employeeUpdated&id='.$updateEmployee["id"]);
 }
 
 
