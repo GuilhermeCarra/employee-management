@@ -14,25 +14,19 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
     <body>
-        <header>
-            <!-- LOGO -->
-            <h4>LOGO</h4>
+        <?php require '../assets/header.html';?>
 
-            <!-- DASHBOARD / EMPLOYEE NAVIGATION -->
-            <ul>
-                <a href="dashboard.php"><li>Dashboard</li></a>
-                <a href="employee.php"><li>Employee</li></a>
-            </ul>
-
-            <!-- LOGOUT BUTTON -->
-            <form method="POST" action="library/loginController.php">
-                <input type="submit" name="logout" value="Log Out"/>
-            </form>
-        </header>
-
-        <div id="jsGrid"></div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+            <div id="jsGrid"></div>
+            </div>
+            <div class="col-1"></div>
+        </div>
 
         <div id="employeeAlert"></div>
+
+        <?php require '../assets/footer.html';?>
 
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script src="../node_modules/jsgrid/dist/jsgrid.min.js"></script>
