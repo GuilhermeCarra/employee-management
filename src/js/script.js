@@ -49,7 +49,9 @@ $(document).ready(function(){
                             url: "library/employeeController.php",
                             data: {"newEmployee":item},
                             success: function(response) {
-                                alert(response);
+                                $('#employeeAlert').text(response);
+                                $('#employeeAlert').slideDown();
+                                setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
                             }
                         });
                     },
@@ -59,7 +61,9 @@ $(document).ready(function(){
                             url: "library/employeeController.php",
                             data: {"id":item.id},
                             success: function(response) {
-                                alert(response);
+                                $('#employeeAlert').text(response+" Refresing page...");
+                                $('#employeeAlert').slideDown();
+                                setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
                             }
                         });
                     }
@@ -87,14 +91,23 @@ $(document).ready(function(){
 
     // employee.php -- UPDATE EMPLOYEE
     if ($("#employeePUT").length) {
+        // Getting Employee ID on URL Parameters to request the Employee info to php
         const urlParams = new URLSearchParams(window.location.search);
         var id = urlParams.get('id');
+
+        // Click event to select an avatar from the list
+        $(".img-container").click(function(){
+            $(".active-avatar").removeClass("active-avatar");
+            $(this).addClass("active-avatar");
+        });
+
         $.ajax({
             type: "GET",
             url: "library/employeeController.php",
             data: {"id":id},
             success: function(employee) {
                 employee = JSON.parse(employee);
+                // Filling inputs with the Employee information
                 $("#name").val(employee.name);
                 $("#lastName").val(employee.lastName);
                 $("#age").val(employee.age);
@@ -105,6 +118,19 @@ $(document).ready(function(){
                 $("#postalCode").val(employee.postalCode);
                 $("#phoneNumber").val(employee.phoneNumber);
                 if(employee.gender == "woman") $("#gender").val("woman");
+
+                // Verify if Employee have an avatar
+                if(employee.hasOwnProperty('avatar')) {
+                    // Print it if Employee has an avatar
+                    $("#employeeAvatar").empty();
+                    $("#employeeAvatar").append(
+                        $('<div class="img-container"><img class="thumbnail" src="'+employee.avatar+'"></div>').click(function(){removeEmployeeAvatar(id)})
+                    );
+                    // And set a click event to delete it and put a button to add another one
+                    $(".img-container").click(function(){
+                        $(".img-container").remove();
+                    });
+                }
             }
         });
 
@@ -122,22 +148,32 @@ $(document).ready(function(){
                     "postalCode":$("#postalCode").val(),
                     "phoneNumber":$("#phoneNumber").val(),
             }
+            if ($(".active-avatar").length) item.avatar = $(".active-avatar img").attr("src");
             $.ajax({
                 type: "PUT",
                 url: "library/employeeController.php",
                 data: {"updateEmployee":item},
                 success: function(response) {
-                    alert(response);
+                    $('#employeeAlert').text(response);
+                    $('#employeeAlert').slideDown();
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2500);
                 }
             });
         });
     }
 
-    // employee.php -- CREATE EMPLOYEE
+    // employee.php -- CREATE EMPLOYEE FORM
     if ($("#employeePOST").length) {
-        // Getting avatars
-        showAvatarSelection();
 
+        // Click event to select an avatar from the list
+        $(".img-container").click(function(){
+            $(".active-avatar").removeClass("active-avatar");
+            $(this).addClass("active-avatar");
+        });
+
+        // Getting all inputs values to save the Employee
         $('#employeePOST').click(function(){
             item = {
                 "id":id,
@@ -152,30 +188,30 @@ $(document).ready(function(){
                 "postalCode":$("#postalCode").val(),
                 "phoneNumber":$("#phoneNumber").val(),
             }
+            if ($(".active-avatar").length) item.avatar = $(".active-avatar img").attr("src");
+            // Ajax post with employee object to save it on JSON
             $.ajax({
                 type: "POST",
                 url: "library/employeeController.php",
                 data: {"newEmployee":item},
                 success: function(response) {
-                    alert(response);
+                    $('#employeeAlert').text(response);
+                    $('#employeeAlert').slideDown();
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2500);
                 }
             });
         });
     }
 
-    function showAvatarSelection() {
+    function removeEmployeeAvatar(id) {
         $.ajax({
-            type: "GET",
-            url: "library/avatarsApi.php",
-            success: function(response) {
-                let avatars = JSON.parse(response);
-                for(let i = 0; i < avatars.length; i++) {
-                    $("#employeeAvatar").append('<div class="img-container"><img class="thumbnail" src="'+avatars[i]+'" /></div>');
-                }
-                $(".img-container").click(function(){
-                    $(".active-avatar").removeClass("active-avatar");
-                    $(this).addClass("active-avatar");
-                });
+            type: "PUT",
+            url: "library/employeeController.php",
+            data: {"removeAvatar":id},
+            success: function() {
+                location.reload();
             }
         });
     }

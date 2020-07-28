@@ -29,6 +29,7 @@ function addEmployee(array $newEmployee)
     $employeeObj->state = $newEmployee["state"];
     $employeeObj->postalCode = $newEmployee["postalCode"];
     $employeeObj->phoneNumber = $newEmployee["phoneNumber"];
+    if (isset($newEmployee["avatar"])) $employeeObj->avatar = $newEmployee["avatar"];
 
     // Inserting employee in JSON variable
     $employeesJSON[]=$employeeObj;
@@ -39,7 +40,7 @@ function addEmployee(array $newEmployee)
     // Saving JSON with the new Employee on local file
     file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
 
-    return "Created employee: ".$newEmployee["name"]." ".$newEmployee["lastName"];
+    return "Created employee: ".$newEmployee["name"]." ".$newEmployee["lastName"]."!";
 }
 
 
@@ -60,7 +61,7 @@ function deleteEmployee(string $id)
             // Saving updated JSON on local file
             file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
 
-            return "Deleted employee: ". $name;
+            return "Deleted employee: ". $name."!";
         }
     }
 }
@@ -83,13 +84,14 @@ function updateEmployee(array $updateEmployee)
             $employee->state = $updateEmployee["state"];
             $employee->postalCode = $updateEmployee["postalCode"];
             $employee->phoneNumber = $updateEmployee["phoneNumber"];
+            if (isset($updateEmployee["avatar"])) $employee->avatar = $updateEmployee["avatar"];
         }
     }
 
     // Saving updated JSON on local file
     file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
 
-    return "Updated employee: ".$updateEmployee["name"]." ".$updateEmployee["lastName"];
+    return "Updated Employee: ".$updateEmployee["name"]." ".$updateEmployee["lastName"]."! Refreshing page...";
 }
 
 
@@ -108,7 +110,16 @@ function getEmployee(string $id)
 
 function removeAvatar($id)
 {
-// TODO implement it
+    $employeesJSON = json_decode(file_get_contents("../../resources/employees.json"));
+
+    // Searching for the Employee by his ID and then return it
+    foreach ($employeesJSON as $employee) {
+        if ($employee->id == $id) {
+            unset($employee->avatar);
+        }
+    }
+
+    file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
 }
 
 
