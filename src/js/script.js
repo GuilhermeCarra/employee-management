@@ -227,4 +227,22 @@ $(document).ready(function(){
         });
     }
 
+    const name = document.getElementById('name');
+    const lastName = document.getElementById('lastName');
+    const email = document.getElementById('email');
+    const gender = document.getElementById('gender');
+    const city = document.getElementById('city');
+    const streetAddress = document.getElementById('streetAddress');
+    const state = document.getElementById('state');
+    const age = document.getElementById('age');
+    const postalCode = document.getElementById('postalCode');
+    const phoneNumber = document.getElementById('phoneNumber');
+
+    form.addEventListener('')
+
+    function validateForm() {
+
+    }
+
+
 });
