@@ -78,6 +78,10 @@
     background-color: rgb(53, 53, 53);
 }
 
+.loginBtn:focus {
+    outline: 0;
+}
+
 .form-options{
     margin: 0;
     padding: 0;
@@ -90,4 +94,19 @@
     margin: 0 0 10px;
     display: block;
 
+}
+
+#loginError {
+    display: none;
+    position: absolute;
+    font-weight: bold;
+    width: 30vw;
+    top: 15%;
+    left: 35vw;
+    background-color: rgba(128, 0, 128, 0.253);
+    color: rgb(82, 23, 141);
+    padding: 8px;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid rgba(128, 0, 128, 0.178);
 }

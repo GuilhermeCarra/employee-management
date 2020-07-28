@@ -14,7 +14,8 @@ $(document).ready(function(){
                     location.href = "src/dashboard.php";
                 },
                 401: function () {
-                    $("html").append('<span>Invalid credentials</span>');
+                    $("#loginError").text('Invalid credentials');
+                    $("#loginError").slideDown();
                 }
             }
         });
@@ -76,13 +77,13 @@ $(document).ready(function(){
 
                 fields: [
                     { name: "name", title: "Name", type: "text", width: 150, validate: "required" },
-                    { name: "email", title: "Email", type: "text", width: 150 },
-                    { name: "age", title: "Age", type: "number", width: 50 },
-                    { name: "streetAddress", title: "Street Address", type: "text", width: 70 },
-                    { name: "city", title: "City", type: "text", width: 100},
-                    { name: "state", title: "State", type: "text", width: 60, validate: "required" },
-                    { name: "postalCode", title: "Postal Code", type: "number", validate: "required" },
-                    { name: "phoneNumber", title: "Phone Number", type: "number", validate: "required" },
+                    { name: "email", title: "Email", type: "text", width: 150, validate: "required" },
+                    { name: "age", title: "Age", type: "number", width: 50, align: "center", validate: "required" },
+                    { name: "streetAddress", title: "Street Address", type: "text", width: 70, align: "center", validate: "required" },
+                    { name: "city", title: "City", type: "text", width: 100, align: "center", validate: "required"},
+                    { name: "state", title: "State", type: "text", width: 60, align: "center", validate: "required" },
+                    { name: "postalCode", title: "Postal Code", type: "number", align: "center", validate: "required" },
+                    { name: "phoneNumber", title: "Phone Number", type: "number", align: "center", validate: "required" },
                     { type: "control", editButton: false }
                 ]
             });
