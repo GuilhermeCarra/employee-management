@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    // LOGIN VALIDATION
+    // index.php -- LOGIN VALIDATION
     $("#loginBtn").click(function(){
         let email = $("#email").val();
         let password = $("#password").val();
