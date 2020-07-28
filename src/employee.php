@@ -11,7 +11,7 @@ if (isset($_GET['id'])) $method = 'PUT';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 
 <body>
