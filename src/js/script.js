@@ -126,6 +126,7 @@ $(document).ready(function(){
                 if(employee.hasOwnProperty('avatar')) {
                     // Print it if Employee has an avatar
                     $("#employeeAvatar").empty();
+                    $("#employeeAvatar").addClass('justify-content-center');
                     $("#employeeAvatar").append(
                         $('<div class="img-container"><img class="thumbnail" src="'+employee.avatar+'"></div>').click(function(){removeEmployeeAvatar(id)})
                     );
