@@ -155,7 +155,7 @@ $(document).ready(function(){
                     "phoneNumber":$("#phoneNumber").val(),
             }
             if ($(".active-avatar").length) item.avatar = $(".active-avatar img").attr("src");
-            if (validateForm()) {
+            if ( validateForm() ) {
                 $.ajax({
                     type: "PUT",
                     url: "library/employeeController.php",
@@ -198,7 +198,7 @@ $(document).ready(function(){
             }
             if ($(".active-avatar").length) item.avatar = $(".active-avatar img").attr("src");
             // Ajax post with employee object to save it on JSON
-            if (validateForm()) {
+            if ( validateForm() ) {
                 $.ajax({
                     type: "POST",
                     url: "library/employeeController.php",
