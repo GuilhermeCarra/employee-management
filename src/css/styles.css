@@ -5,24 +5,26 @@
     padding: 0 0 0 45px;
 }
 
-.logOut{
-    
+.form-employee{
+    margin-bottom: 100px;
 }
-
-
 
 .font-footer{
     font-size: 12px;
 }
 
+.logOut, .nav-li{
+    font-size: 14px;
+}
 
 /* employee.php -- AVATAR STYLES START */
 
 .img-container {
     margin-left: 5px;
+    margin-bottom: 70px;
     border-radius: .25rem;
-    width: 120px !important;
-    height: 120px !important;
+    width: 8vw !important;
+    height: 8vw !important;
     outline: 1px solid white;
     outline-offset: -4px;
     overflow: hidden;
