@@ -22,6 +22,7 @@ $(document).ready(function(){
         });
     });
 
+    // dashboard.php -- CREATE THE EMPLOYEE JSGRID TABLE
     if ($("#jsGrid").length) appendJsGrid();
 
     function appendJsGrid() {
