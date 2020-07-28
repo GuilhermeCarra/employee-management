@@ -4,6 +4,7 @@ $(document).ready(function(){
     $("#loginBtn").click(function(){
         let email = $("#email").val();
         let password = $("#password").val();
+        $("#loginError").fadeOut("fast");
 
         $.ajax({
             url: "src/library/loginController.php",
