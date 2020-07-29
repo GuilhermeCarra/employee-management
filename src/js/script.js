@@ -164,6 +164,7 @@ $(document).ready(function () {
     // Replace IMG to loading gif and Remove Employee avatar using his ID on query string
     function removeEmployeeAvatar() {
         $(".img-container").removeClass("active-avatar");
+        $('#avatarInput').removeAttr("value name");
         $('.thumbnail').attr('src','../assets/img/loading.gif');
         const urlParams = new URLSearchParams(window.location.search);
         var id = urlParams.get('id');
