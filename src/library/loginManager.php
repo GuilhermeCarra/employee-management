@@ -17,9 +17,9 @@
         }
     }
 
-    function logOut() {
+    function logOut($location) {
         session_start();
         session_destroy();
-        header('Location: ../index.php');
+        header('Location: '.$location);
     }
 ?>
