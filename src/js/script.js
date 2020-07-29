@@ -114,7 +114,7 @@ $(document).ready(function () {
         });
     }
 
-    // employee.php -- UPDATE AVATAR
+    // employee.php -- EDITED/CREATED MESSAGES and UPDATE AVATAR
     if ($("#employeePage").length) {
 
         // Verify with query string if a employee was created to show a message
@@ -132,13 +132,7 @@ $(document).ready(function () {
             setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
         }
 
-        // Click event to Return Button
-        $('#employeeReturnBtn').click(function(){
-            event.preventDefault();
-            location.href = "dashboard.php";
-        });
-
-        // Click event to select an avatar from the list
+        // Set click event on avatars to select an avatar from the list
         setClickAvatars();
 
         // Resize avatars with bigger width
@@ -160,6 +154,11 @@ $(document).ready(function () {
             }
         });
 
+        // Click event to Return Button
+        $('#employeeReturnBtn').click(function(){
+            event.preventDefault();
+            location.href = "dashboard.php";
+        });
     }
 
     // Replace IMG to loading gif and Remove Employee avatar using his ID on query string
