@@ -139,13 +139,10 @@ $(document).ready(function () {
         });
 
         // Click event to select an avatar from the list
-        $(".img-container").click(function () {
-            $(".active-avatar").removeClass("active-avatar");
-            $(this).addClass("active-avatar");
-            let url = ($(".active-avatar img").attr("src"))
-            $('#avatarInput').attr("value",url);
-            $('#avatarInput').attr("name","avatar");
-        });
+        setClickAvatars();
+
+        // Resize avatars with bigger width
+        resizeAvatars();
 
         // Verify if Employee has an avatar
         if($("#employeeAvatar").children().length == 1) {
@@ -162,10 +159,12 @@ $(document).ready(function () {
                 $('#hiddenSubmitBtn').click();
             }
         });
+
     }
 
     // Replace IMG to loading gif and Remove Employee avatar using his ID on query string
     function removeEmployeeAvatar() {
+        $(".img-container").removeClass("active-avatar");
         $('.thumbnail').attr('src','../assets/img/loading.gif');
         const urlParams = new URLSearchParams(window.location.search);
         var id = urlParams.get('id');
@@ -177,7 +176,35 @@ $(document).ready(function () {
                 // Remove Employee from gallery div and request new ones
                 $('#imageGallery').empty();
                 $('#imageGallery').append(avatars);
+
+                // Setting click event to select an avatar from the list
+                setClickAvatars();
             }
+        });
+    }
+
+    function setClickAvatars() {
+        $(".img-container").click(function () {
+            $(".active-avatar").removeClass("active-avatar");
+            $(this).addClass("active-avatar");
+            let url = ($(".active-avatar img").attr("src"))
+            $('#avatarInput').attr("value",url);
+            $('#avatarInput').attr("name","avatar");
+        });
+    }
+
+    function resizeAvatars() {
+        $('.thumbnail').each(function(){
+            if(this.complete) {
+                if($(this).width() > $(this).height()) {
+                    $(this).addClass('resize-avatar');
+                }
+            }
+            $(this).on("load",function() {
+                if($(this).width() > $(this).height()) {
+                    $(this).addClass('resize-avatar');
+                }
+            });
         });
     }
 

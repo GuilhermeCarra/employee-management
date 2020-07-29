@@ -39,6 +39,12 @@
     border: 3.5px solid royalblue;
 }
 
+.resize-avatar {
+    z-index: -1;
+    object-fit: cover;
+    height: 100% !important;
+}
+
 .active-avatar {
     outline: 3px solid rgb(255, 255, 255);
     outline-offset: 0px;
