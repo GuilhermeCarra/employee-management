@@ -114,7 +114,7 @@ $(document).ready(function () {
         });
     }
 
-    // employee.php -- EDITED/CREATED MESSAGES and UPDATE AVATAR
+    // employee.php -- EMPLOYEE EDITED/CREATED MESSAGES and UPDATE AVATAR
     if ($("#employeePage").length) {
 
         // Verify with query string if a employee was created to show a message
