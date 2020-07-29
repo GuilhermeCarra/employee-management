@@ -173,7 +173,7 @@ $(document).ready(function () {
             url: "library/employeeController.php",
             data: {"removeAvatar":id},
             success: function(avatars) {
-                // Remove Employee from gallery div and request new ones
+                // Remove Employee from gallery div and append new ones from request response
                 $('#imageGallery').empty();
                 $('#imageGallery').append(avatars);
 
