@@ -20,10 +20,11 @@
     <title>Employee Management</title>
     <link rel="icon" type="image/png" href="../src/img/favicon.png">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 
-<body>
+<body id="employeePage">
     <?php require '../assets/header.html'; ?>
 
     <div class="row">
@@ -92,16 +93,22 @@
                             <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="" value="<?php if(isset($employee)) echo $employee->phoneNumber ?>">
                         </div>
                     </div>
+
                     <div class="buttons-employeed">
                         <button id="hiddenSubmitBtn" type="submit" class="d-none" name="<?php echo $method ?>" class="btn btn-outline-dark">Save</button>
-                        <button id="submitBtn" class="btn btn-outline-dark">Save</button>
+                        <button id="submitBtn" type="button" class="btn btn-outline-dark">Save</button>
                         <button id="employeeReturnBtn" class="btn btn-dark ">Return</button>
                     </div>
+
+                    <!-- Hidden inputs to send id and avatar info whithin the form -->
                     <input class="d-none" id="avatarInput" type="text" <?php if(isset($employee->avatar)) echo 'name="avatar" value="'.$employee->avatar.'"' ?>>
                     <input class="d-none" type="text" name="id" value="<?php if(isset($employee)) echo $employee->id ?>">
                 </form>
+
                 <div class="col-2"></div>
             </div>
+
+            <!-- Alert message to updated or created employee -->
             <div id="employeeAlert"></div>
 
             <?php require '../assets/footer.html'; ?>

@@ -1,19 +1,21 @@
 /* Logo */
-.logo{
+.logo {
     width: 170px;
     height: auto;
     padding: 0 0 0 45px;
 }
 
-.form-employee{
+.form-employee {
+    margin-top: 50px;
     margin-bottom: 100px;
 }
 
-.font-footer{
+.font-footer {
     font-size: 12px;
 }
 
-.logOut, .nav-li{
+.logOut,
+.nav-li {
     font-size: 14px;
 }
 
@@ -68,3 +70,19 @@
 }
 
 /* employee.php -- ALERT MESSAGE END */
+
+/* Form Validate */
+
+.error {
+    color: rgb(192, 46, 46);
+}
+
+.buttons-employeed {
+    margin-left: 558px;
+}
+
+.banner-social-buttons {
+    float: right;
+    margin-top: 0;
+    display: flex;
+}
