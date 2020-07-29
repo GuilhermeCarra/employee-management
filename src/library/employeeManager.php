@@ -40,7 +40,12 @@ function addEmployee(array $newEmployee)
     // Saving JSON with the new Employee on local file
     file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
 
-    header('Location: ../employee.php?employeeCreated&id='.$employeeObj->id);
+    // If it was created with employe.php redirect to employee page, if it's was created with jsGrid table returns the employee
+    if (isset($_POST['POST'])) {
+        header('Location: ../employee.php?employeeCreated&id='.$employeeObj->id);
+    } else {
+        return json_encode($employeeObj);
+    }
 }
 
 
