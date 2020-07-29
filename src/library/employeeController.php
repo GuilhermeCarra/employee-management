@@ -27,7 +27,7 @@ switch($_SERVER["REQUEST_METHOD"]) {
 
         // Removing avatar from Employee
         if (isset($_PUT['removeAvatar'])){
-            removeAvatar($_PUT['removeAvatar']);
+            echo removeAvatar($_PUT['removeAvatar']);
             break;
         }
 

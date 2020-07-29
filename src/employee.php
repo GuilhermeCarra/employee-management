@@ -30,7 +30,9 @@
     <div class="row">
         <div class="col-1"></div>
         <div class="col-10 mb-5">
-            <?php include('imageGallery.php') ?>
+            <div id="imageGallery">
+                <?php include('imageGallery.php') ?>
+            </div>
             <div class="col-1"></div>
             <div class="row form-employee">
                 <div class="col-2"></div>

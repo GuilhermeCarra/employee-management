@@ -125,6 +125,8 @@ function removeAvatar($id)
     }
 
     file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
+
+    return header('Location: ../imageGallery.php');
 }
 
 

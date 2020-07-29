@@ -164,7 +164,7 @@ $(document).ready(function () {
         });
     }
 
-    // Replace img to loagind gif and Remove Employee avatar using his ID on query string
+    // Replace img to loading gif and Remove Employee avatar using his ID on query string
     function removeEmployeeAvatar() {
         $('.thumbnail').attr('src','../assets/img/loading.gif');
         const urlParams = new URLSearchParams(window.location.search);
@@ -173,8 +173,9 @@ $(document).ready(function () {
             type: "PUT",
             url: "library/employeeController.php",
             data: {"removeAvatar":id},
-            success: function() {
-                location.href = "employee.php?id="+id;
+            success: function(avatars) {
+                $('#imageGallery').empty();
+                $('#imageGallery').append(avatars);
             }
         });
     }
