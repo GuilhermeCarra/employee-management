@@ -1,5 +1,6 @@
 <?php
     require('library/sessionHelper.php');
+
     $method = "POST";
     if (isset($_GET['id'])) {
         require('library/employeeController.php');
