@@ -177,8 +177,9 @@ $(document).ready(function () {
                 $('#imageGallery').empty();
                 $('#imageGallery').append(avatars);
 
-                // Setting click event to select an avatar from the list
+                // Setting click event to avatar and resize them
                 setClickAvatars();
+                resizeAvatars();
             }
         });
     }
