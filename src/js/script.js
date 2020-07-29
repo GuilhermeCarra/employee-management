@@ -119,6 +119,7 @@ $(document).ready(function () {
 
         // Verify with query string if a employee was created to show a message
         const urlParams = new URLSearchParams(window.location.search);
+
         if (urlParams.has('employeeCreated')) {
             $('#employeeAlert').text('Employee Created Suscessfully');
             $('#employeeAlert').slideDown();
