@@ -187,6 +187,7 @@ $(document).ready(function () {
         $(".img-container").click(function () {
             $(".active-avatar").removeClass("active-avatar");
             $(this).addClass("active-avatar");
+            // Put photo URL on input to save it when form is sent
             let url = ($(".active-avatar img").attr("src"))
             $('#avatarInput').attr("value",url);
             $('#avatarInput').attr("name","avatar");
