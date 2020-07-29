@@ -153,6 +153,7 @@ $(document).ready(function(){
     }
 
     function removeEmployeeAvatar() {
+        $('.thumbnail').attr('src','img/loading.gif');
         const urlParams = new URLSearchParams(window.location.search);
         var id = urlParams.get('id');
         $.ajax({
