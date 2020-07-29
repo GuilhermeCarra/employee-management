@@ -234,10 +234,10 @@ $(document).ready(function () {
         }
 
         if (emailValue === '') {
-            $('#email').after('<small class="error">Email cannot be blank</small><br>');
+            $('#email').after('<small class="error">Email cannot be blank<br></small>');
             validate = false;
         } else if (!isEmail(emailValue)) {
-            $('#email').after('<small class="error">Email is not valid</small><br>');
+            $('#email').after('<small class="error">Email is not valid<br></small>');
             validate = false;
         }
 
