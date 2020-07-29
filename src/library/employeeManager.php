@@ -126,6 +126,7 @@ function removeAvatar($id)
 
     file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
 
+    // Return imageGallery.php content to append on page and user choose new avatars
     return header('Location: ../imageGallery.php');
 }
 
