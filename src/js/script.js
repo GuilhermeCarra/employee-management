@@ -297,4 +297,8 @@ $(document).ready(function () {
         return validate;
 
     }
+
+    // Adding active style to navbar correponding to the actual page
+    if ($("#dashboardPage").length) $('.nav-li[href$="dashboard.php"]').removeClass('text-body').addClass('text-secondary');
+    if ($("#employeePage").length) $('.nav-li[href$="employee.php"]').removeClass('text-body').addClass('text-secondary');
 });
