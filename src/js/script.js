@@ -51,9 +51,12 @@ $(document).ready(function () {
                     insertItem: function (item) {
                         item.lastName = "";
                         item.gender = "";
-                        $.ajax({
+                        return $.ajax({
                             type: "POST",
                             url: "library/employeeController.php",
+                            dataFilter: function (response) {
+                                return JSON.parse(response);
+                            },
                             data: {
                                 "name":item.name,
                                 "lastName":item.lastName,
@@ -65,11 +68,13 @@ $(document).ready(function () {
                                 "age":item.age,
                                 "postalCode":item.postalCode,
                                 "phoneNumber":item.phoneNumber
+                            },
+                            success: function(newEmployee) {
+                                $('#employeeAlert').text('Created Employee: '+newEmployee.name);
+                                $('#employeeAlert').slideDown();
+                                setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
                             }
                         });
-                        $('#employeeAlert').text('Created Employee:'+item.name);
-                        $('#employeeAlert').slideDown();
-                        setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
                     },
                     deleteItem: function (item) {
                         $.ajax({
