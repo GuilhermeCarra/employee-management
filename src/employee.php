@@ -96,7 +96,7 @@
                         </div>
                     </div>
 
-                    <div class="buttons-employeed">
+                    <div class="buttons-employeed float-right">
                         <button id="hiddenSubmitBtn" type="submit" class="d-none" name="<?php echo $method ?>" class="btn btn-outline-dark">Save</button>
                         <button id="submitBtn" type="button" class="btn btn-outline-dark">Save</button>
                         <button id="employeeReturnBtn" class="btn btn-dark ">Return</button>
