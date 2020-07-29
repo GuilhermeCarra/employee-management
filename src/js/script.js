@@ -164,7 +164,7 @@ $(document).ready(function () {
         });
     }
 
-    // Replace img to loading gif and Remove Employee avatar using his ID on query string
+    // Replace IMG to loading gif and Remove Employee avatar using his ID on query string
     function removeEmployeeAvatar() {
         $('.thumbnail').attr('src','../assets/img/loading.gif');
         const urlParams = new URLSearchParams(window.location.search);
@@ -174,6 +174,7 @@ $(document).ready(function () {
             url: "library/employeeController.php",
             data: {"removeAvatar":id},
             success: function(avatars) {
+                // Remove Employee from gallery div and request new ones
                 $('#imageGallery').empty();
                 $('#imageGallery').append(avatars);
             }
