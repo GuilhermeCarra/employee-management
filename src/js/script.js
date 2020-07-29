@@ -185,12 +185,16 @@ $(document).ready(function () {
 
     function setClickAvatars() {
         $(".img-container").click(function () {
-            $(".active-avatar").removeClass("active-avatar");
-            $(this).addClass("active-avatar");
-            // Put photo URL on input to save it when form is sent
-            let url = ($(".active-avatar img").attr("src"))
-            $('#avatarInput').attr("value",url);
-            $('#avatarInput').attr("name","avatar");
+            if($(this).hasClass("active-avatar")) {
+                $(".active-avatar").removeClass("active-avatar");
+                $('#avatarInput').removeAttr("value name");
+            } else {
+                $(".active-avatar").removeClass("active-avatar");
+                $(this).addClass("active-avatar");
+                // Put photo URL on input to save it when form is sent
+                let url = ($(".active-avatar img").attr("src"))
+                $('#avatarInput').attr("value",url).attr("name","avatar");
+            }
         });
     }
 
