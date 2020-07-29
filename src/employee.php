@@ -1,7 +1,8 @@
 <?php
     require('library/sessionHelper.php');
 
-    $method = "POST";
+    $method = "POST";  // $method variable defines if its a Employee Update (PUT) or new Employee creation (POST)
+
     if (isset($_GET['id'])) {
         require('library/employeeController.php');
         $method = "PUT";
