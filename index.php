@@ -27,7 +27,7 @@
                 <div class="col-4">
                     <div class="form-horizontal">
                         <div class="form_icon"><i class="fa fa-user-circle"></i></div>
-                        <h3 class="title">Login form</h3>
+                        <h3 class="title">admin login</h3>
                         <div class="form-group">
                             <span class="input-icon"><i class="fa fa-user"></i></span>
                             <input class="form-control" type="email" id="email" placeholder="Insert an Email" />
@@ -39,10 +39,6 @@
 
                         <button class="loginBtn" id="loginBtn">Log in</button>
 
-                        <ul class="form-options">
-                            <li><a href="#">Forgot Username/Password</a></li>
-                            <li><a href="#">Create New Account <i class="fa fa-arrow-right"></i></a></li>
-                        </ul>
                     </div>
                 </div>
                 <div class="col-4"></div>
