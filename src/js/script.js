@@ -52,7 +52,7 @@ $(document).ready(function () {
                 paging: true,
                 autoload: true,
                 pageSize: 10,
-                deleteConfirm: "Do you really want to delete client?",
+                deleteConfirm: "Do you really want to delete this Employee?",
                 controller: {
                     insertItem: function (item) {
                         item.lastName = "";
