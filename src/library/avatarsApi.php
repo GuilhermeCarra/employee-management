@@ -11,7 +11,10 @@ function getAvatars() {
         CURLOPT_HTTPHEADER => array('X-API-KEY: 6301675F-934441A8-BFE795BC-BFC60F6B')
     ));
     $output = curl_exec($ch);
+    if (curl_errno($ch)) $error_msg = curl_error($ch);
     curl_close($ch);
+
+    if (isset($error_msg)) return "error";
 
     $avatarsResponse = json_decode($output);
 
