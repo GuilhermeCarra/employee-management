@@ -14,7 +14,7 @@
         if(isset($avatar)) {
             echo '<div class="img-container"><img class="thumbnail" src="'.$avatar.'"></div>';
         } elseif (isset($error)) {
-            echo '<kbd>'.$error.'<kbd>';
+            echo '<kbd>'.$error.'</kbd>';
         } else {
             foreach($avatars as $avatar) {
                 echo '<div class="img-container"><img class="thumbnail" src="'.$avatar.'"></div>';
