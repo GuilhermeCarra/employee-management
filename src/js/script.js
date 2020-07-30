@@ -23,10 +23,17 @@ $(document).ready(function () {
                 }
             }
         });
+
     });
+    // Event to use Enter key to send login
+    if ($("#loginPage").length) {
+        $(document).on("keydown",function(){
+            if ( event.key == "Enter" ) $("#loginBtn").click();
+        });
+    }
 
     // dashboard.php -- CREATE THE EMPLOYEE JSGRID TABLE
-    if ($("#jsGrid").length) appendJsGrid();
+    if ($("#dashboardPage").length) appendJsGrid();
 
     function appendJsGrid() {
 

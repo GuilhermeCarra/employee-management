@@ -19,7 +19,7 @@
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
 </head>
 
-<body>
+<body id="loginPage">
     <div class="form_bg">
         <div class="container">
             <div class="row">
