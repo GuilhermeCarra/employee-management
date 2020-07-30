@@ -9,7 +9,7 @@
     }
 ?>
 
-<div class="row mb-4" id="employeeAvatar">
+<div class="row mb-4 justify-content-center" id="employeeAvatar">
     <?php
         if(isset($avatar)) {
             echo '<div class="img-container"><img class="thumbnail" src="'.$avatar.'"></div>';

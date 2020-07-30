@@ -136,8 +136,6 @@ $(document).ready(function () {
 
         // Verify if Employee has an avatar
         if($("#employeeAvatar").children().length == 1) {
-            // Center image if Employee has an avatar
-            $("#employeeAvatar").addClass('justify-content-center');
             // And set a click event to delete it
             $(".img-container").click(removeEmployeeAvatar);
         }
