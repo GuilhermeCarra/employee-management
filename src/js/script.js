@@ -19,8 +19,7 @@ $(document).ready(function () {
                     location.href = "src/dashboard.php";
                 },
                 401: function () {
-                    $("#loginError").text('Invalid credentials');
-                    $("#loginError").slideDown();
+                    $("#loginError").text('Invalid credentials').slideDown();
                 }
             }
         });
@@ -70,8 +69,7 @@ $(document).ready(function () {
                                 "phoneNumber":item.phoneNumber
                             },
                             success: function(newEmployee) {
-                                $('#employeeAlert').text('Created Employee: '+newEmployee.name);
-                                $('#employeeAlert').slideDown();
+                                $('#employeeAlert').text('Created Employee: '+newEmployee.name).slideDown();
                                 setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
                             }
                         });
@@ -84,8 +82,7 @@ $(document).ready(function () {
                                 "id": item.id
                             },
                             success: function (response) {
-                                $('#employeeAlert').text(response);
-                                $('#employeeAlert').slideDown();
+                                $('#employeeAlert').text(response).slideDown();
                                 setTimeout(() => {
                                     $('#employeeAlert').slideUp()
                                 }, 2500);
@@ -94,6 +91,7 @@ $(document).ready(function () {
                     }
                 },
                 rowClick: function (item) {
+                    $('#employeeAlert').text('Loading Employee Page...').slideDown();
                     location.href = "employee.php?id=" + item.item.id;
                 },
 
@@ -121,14 +119,12 @@ $(document).ready(function () {
         const urlParams = new URLSearchParams(window.location.search);
 
         if (urlParams.has('employeeCreated')) {
-            $('#employeeAlert').text('Employee Created Suscessfully');
-            $('#employeeAlert').slideDown();
+            $('#employeeAlert').text('Employee Created Suscessfully').slideDown();
             setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
         }
         // Verify with query string if a employee was updated to show a message
         if (urlParams.has('employeeUpdated')) {
-            $('#employeeAlert').text('Employee Updated Suscessfully');
-            $('#employeeAlert').slideDown();
+            $('#employeeAlert').text('Employee Updated Suscessfully').slideDown();
             setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
         }
 
@@ -288,4 +284,9 @@ $(document).ready(function () {
     // Adding style to navbar link corresponding to the actual page
     if ($("#dashboardPage").length) $('.nav-li[href$="dashboard.php"]').removeClass('text-body').addClass('text-secondary');
     if ($("#employeePage").length) $('.nav-li[href$="employee.php"]').removeClass('text-body').addClass('text-secondary');
+
+    // Adding Loading employee message on Employee navigation click
+    $('.nav-li[href$="employee.php"]').click(function(){
+        $('#employeeAlert').text('Loading Employee Page...').slideDown();
+    });
 });
