@@ -21,12 +21,14 @@ require('library/sessionHelper.php');
 <body id="dashboardPage">
     <?php require '../assets/header.html'; ?>
 
-    <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10 mt-3">
-            <div id="jsGrid"></div>
+    <div class="container min-vw-100">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 mt-3">
+                <div id="jsGrid"></div>
+            </div>
+            <div class="col-1"></div>
         </div>
-        <div class="col-1"></div>
     </div>
 
     <div id="employeeAlert"></div>

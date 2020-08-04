@@ -27,8 +27,8 @@ $(document).ready(function () {
     });
     // Event to use Enter key to send login
     if ($("#loginPage").length) {
-        $(document).on("keydown",function(){
-            if ( event.key == "Enter" ) $("#loginBtn").click();
+        $(document).on("keydown", function () {
+            if (event.key == "Enter") $("#loginBtn").click();
         });
     }
 
@@ -44,7 +44,6 @@ $(document).ready(function () {
             employees = JSON.parse(employees);
             $("#jsGrid").jsGrid({
                 width: "100%",
-                height: "450px",
 
                 inserting: true,
                 editing: true,
@@ -64,20 +63,20 @@ $(document).ready(function () {
                                 return JSON.parse(response);
                             },
                             data: {
-                                "name":item.name,
-                                "lastName":item.lastName,
-                                "email":item.email,
-                                "gender":item.gender,
-                                "city":item.city,
-                                "streetAddress":item.streetAddress,
-                                "state":item.state,
-                                "age":item.age,
-                                "postalCode":item.postalCode,
-                                "phoneNumber":item.phoneNumber
+                                "name": item.name,
+                                "lastName": item.lastName,
+                                "email": item.email,
+                                "gender": item.gender,
+                                "city": item.city,
+                                "streetAddress": item.streetAddress,
+                                "state": item.state,
+                                "age": item.age,
+                                "postalCode": item.postalCode,
+                                "phoneNumber": item.phoneNumber
                             },
-                            success: function(newEmployee) {
-                                $('#employeeAlert').text('Created Employee: '+newEmployee.name).slideDown();
-                                setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
+                            success: function (newEmployee) {
+                                $('#employeeAlert').text('Created Employee: ' + newEmployee.name).slideDown();
+                                setTimeout(() => { $('#employeeAlert').slideUp(); }, 2500);
                             }
                         });
                     },
@@ -91,7 +90,7 @@ $(document).ready(function () {
                             success: function (response) {
                                 $('#employeeAlert').text(response).slideDown();
                                 setTimeout(() => {
-                                    $('#employeeAlert').slideUp()
+                                    $('#employeeAlert').slideUp();
                                 }, 2500);
                             }
                         });
@@ -105,15 +104,15 @@ $(document).ready(function () {
                 data: employees,
 
                 fields: [
-                    {name: "name",title: "Name",type: "text",width: 150, validate: "required"},
-                    {name: "email",title: "Email",type: "text",width: 150,validate: "required"},
-                    {name: "age",title: "Age",type: "number",width: 50,align: "center",validate: "required"},
-                    {name: "streetAddress",title: "Street Address",type: "text",width: 70,align: "center",validate: "required"},
-                    {name: "city",title: "City",type: "text",width: 100,align: "center",validate: "required"},
-                    {name: "state",title: "State",type: "text",width: 60,align: "center",validate: "required"},
-                    {name: "postalCode",title: "Postal Code",type: "number",align: "center",validate: "required"},
-                    {name: "phoneNumber",title: "Phone Number",type: "number",align: "center",validate: "required"},
-                    {type: "control",editButton: false}
+                    { name: "name", title: "Name", type: "text", width: 150, validate: "required" },
+                    { name: "email", title: "Email", type: "text", width: 150, validate: "required" },
+                    { name: "age", title: "Age", type: "number", width: 50, align: "center", validate: "required" },
+                    { name: "streetAddress", title: "Street Address", type: "text", width: 70, align: "center", validate: "required" },
+                    { name: "city", title: "City", type: "text", width: 100, align: "center", validate: "required" },
+                    { name: "state", title: "State", type: "text", width: 60, align: "center", validate: "required" },
+                    { name: "postalCode", title: "Postal Code", type: "number", align: "center", validate: "required" },
+                    { name: "phoneNumber", title: "Phone Number", type: "number", align: "center", validate: "required" },
+                    { type: "control", editButton: false }
                 ]
             });
         });
@@ -127,12 +126,12 @@ $(document).ready(function () {
 
         if (urlParams.has('employeeCreated')) {
             $('#employeeAlert').text('Employee Created Suscessfully').slideDown();
-            setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
+            setTimeout(() => { $('#employeeAlert').slideUp(); }, 2500);
         }
         // Verify with query string if a employee was updated to show a message
         if (urlParams.has('employeeUpdated')) {
             $('#employeeAlert').text('Employee Updated Suscessfully').slideDown();
-            setTimeout(() => { $('#employeeAlert').slideUp()}, 2500);
+            setTimeout(() => { $('#employeeAlert').slideUp(); }, 2500);
         }
 
         // Set click event on avatars to select an avatar from the list
@@ -142,21 +141,21 @@ $(document).ready(function () {
         resizeAvatars();
 
         // Verify if Employee has an avatar
-        if($("#employeeAvatar").children().length == 1) {
+        if ($("#employeeAvatar").children().length == 1) {
             // And set a click event to delete it
             $(".img-container").click(removeEmployeeAvatar);
         }
 
         // Form validation
-        $('#submitBtn').click(function(){
+        $('#submitBtn').click(function () {
             event.preventDefault();
-            if ( validateForm() ) {
+            if (validateForm()) {
                 $('#hiddenSubmitBtn').click();
             }
         });
 
         // Click event to Return Button
-        $('#employeeReturnBtn').click(function(){
+        $('#employeeReturnBtn').click(function () {
             event.preventDefault();
             location.href = "dashboard.php";
         });
@@ -166,14 +165,14 @@ $(document).ready(function () {
     function removeEmployeeAvatar() {
         $(".img-container").removeClass("active-avatar");
         $('#avatarInput').removeAttr("value name");
-        $('.thumbnail').attr('src','../assets/img/loading.gif');
+        $('.thumbnail').attr('src', '../assets/img/loading.gif');
         const urlParams = new URLSearchParams(window.location.search);
         var id = urlParams.get('id');
         $.ajax({
             type: "PUT",
             url: "library/employeeController.php",
-            data: {"removeAvatar":id},
-            success: function(avatars) {
+            data: { "removeAvatar": id },
+            success: function (avatars) {
                 // Remove Employee from gallery div and append new ones from request response
                 $('#imageGallery').empty();
                 $('#imageGallery').append(avatars);
@@ -187,28 +186,28 @@ $(document).ready(function () {
 
     function setClickAvatars() {
         $(".img-container").click(function () {
-            if($(this).hasClass("active-avatar")) {
+            if ($(this).hasClass("active-avatar")) {
                 $(".active-avatar").removeClass("active-avatar");
                 $('#avatarInput').removeAttr("value name");
             } else {
                 $(".active-avatar").removeClass("active-avatar");
                 $(this).addClass("active-avatar");
                 // Put photo URL on input to save it when form is sent
-                let url = ($(".active-avatar img").attr("src"))
-                $('#avatarInput').attr("value",url).attr("name","avatar");
+                let url = ($(".active-avatar img").attr("src"));
+                $('#avatarInput').attr("value", url).attr("name", "avatar");
             }
         });
     }
 
     function resizeAvatars() {
-        $('.thumbnail').each(function(){
-            if(this.complete) {
-                if($(this).width() > $(this).height()) {
+        $('.thumbnail').each(function () {
+            if (this.complete) {
+                if ($(this).width() > $(this).height()) {
                     $(this).addClass('resize-avatar');
                 }
             }
-            $(this).on("load",function() {
-                if($(this).width() > $(this).height()) {
+            $(this).on("load", function () {
+                if ($(this).width() > $(this).height()) {
                     $(this).addClass('resize-avatar');
                 }
             });
@@ -291,7 +290,7 @@ $(document).ready(function () {
     if ($("#employeePage").length) $('.nav-li[href$="employee.php"]').removeClass('text-body').addClass('text-secondary');
 
     // Adding Loading employee message on Employee navigation click
-    $('.nav-li[href$="employee.php"]').click(function(){
+    $('.nav-li[href$="employee.php"]').click(function () {
         $('#employeeAlert').text('Loading Employee Page...').slideDown();
     });
 });
