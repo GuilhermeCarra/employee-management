@@ -1,4 +1,5 @@
 <?php
+
 /**
  * EMPLOYEE FUNCTIONS LIBRARY
  *
@@ -7,7 +8,8 @@
  */
 
 
-function getAllEmployees() {
+function getAllEmployees()
+{
     $employeesJSON = json_decode(file_get_contents("../../resources/employees.json"));
     return json_encode($employeesJSON);
 }
@@ -32,17 +34,17 @@ function addEmployee(array $newEmployee)
     if (isset($newEmployee["avatar"])) $employeeObj->avatar = $newEmployee["avatar"];
 
     // Inserting employee in JSON variable
-    $employeesJSON[]=$employeeObj;
+    $employeesJSON[] = $employeeObj;
 
     // Sorting JSON array by Employee ID
     $employeesJSON = sortEmployeesById($employeesJSON);
 
     // Saving JSON with the new Employee on local file
-    file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
+    file_put_contents("../../resources/employees.json", json_encode($employeesJSON, JSON_PRETTY_PRINT));
 
     // If it was created with employe.php redirect to employee page, if it's was created with jsGrid table returns the employee
     if (isset($_POST['POST'])) {
-        header('Location: ../employee.php?employeeCreated&id='.$employeeObj->id);
+        header('Location: ../employee.php?employeeCreated&id=' . $employeeObj->id);
     } else {
         return json_encode($employeeObj);
     }
@@ -58,15 +60,15 @@ function deleteEmployee(string $id)
         if ($id == $employee->id) {
 
             // Saving Employee name to return it later
-            $name = $employee->name." ".$employee->lastName;
+            $name = $employee->name . " " . $employee->lastName;
 
             // Delete the employee from JSON array
-            array_splice($employeesJSON,$key,1);
+            array_splice($employeesJSON, $key, 1);
 
             // Saving updated JSON on local file
-            file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
+            file_put_contents("../../resources/employees.json", json_encode($employeesJSON, JSON_PRETTY_PRINT));
 
-            return "Deleted employee: ". $name."!";
+            return "Deleted employee: " . $name . "!";
         }
     }
 }
@@ -94,9 +96,9 @@ function updateEmployee(array $updateEmployee)
     }
 
     // Saving updated JSON on local file
-    file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
+    file_put_contents("../../resources/employees.json", json_encode($employeesJSON, JSON_PRETTY_PRINT));
 
-    header('Location: ../employee.php?employeeUpdated&id='.$updateEmployee["id"]);
+    header('Location: ../employee.php?employeeUpdated&id=' . $updateEmployee["id"]);
 }
 
 
@@ -124,7 +126,7 @@ function removeAvatar($id)
         }
     }
 
-    file_put_contents("../../resources/employees.json", json_encode($employeesJSON));
+    file_put_contents("../../resources/employees.json", json_encode($employeesJSON, JSON_PRETTY_PRINT));
 
     // Return imageGallery.php content to append on page and user choose new avatars
     return header('Location: ../imageGallery.php');
@@ -133,7 +135,7 @@ function removeAvatar($id)
 
 function getQueryStringParameters(): array
 {
-// TODO implement it
+    // TODO implement it
 }
 
 function getNextIdentifier(array $employeesCollection): int
@@ -143,21 +145,23 @@ function getNextIdentifier(array $employeesCollection): int
     foreach ($employeesCollection as $key => $employee) {
 
         // If it's the last Employee and there's no gap between Employees IDs, then the new Employee receives the last Employee's ID added by one.
-        if($counter ==count($employeesCollection) - 1){
-            return $employee->id+1;
+        if ($counter == count($employeesCollection) - 1) {
+            return $employee->id + 1;
         }
 
         // If the ID number of the actual employee and the next one have difference greater than 1, the new Employee gets an ID of the actual Employee add by one.
-        if($employee->id+1 != $employeesCollection[$key+1]->id){
-            return $employee->id+1;
+        if ($employee->id + 1 != $employeesCollection[$key + 1]->id) {
+            return $employee->id + 1;
         }
-    $counter = $counter+1;
+        $counter = $counter + 1;
     }
 }
 
 // Function to sort JSON file by Employee ID
-function sortEmployeesById($employeesJSON) {
-    function cmp($a, $b) {
+function sortEmployeesById($employeesJSON)
+{
+    function cmp($a, $b)
+    {
         return strcmp($a->id, $b->id);
     }
 
