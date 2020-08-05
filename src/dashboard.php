@@ -1,4 +1,3 @@
-<!-- TODO Application entry point. Login view -->
 <?php
 require('library/sessionHelper.php');
 ?>
@@ -15,7 +14,7 @@ require('library/sessionHelper.php');
     <link rel="stylesheet" href="../node_modules/jsgrid/dist/jsgrid.min.css">
     <link rel="stylesheet" href="../node_modules/jsgrid/dist/jsgrid-theme.min.css">
     <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
 </head>
 
 <body id="dashboardPage">
@@ -37,7 +36,7 @@ require('library/sessionHelper.php');
 
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/jsgrid/dist/jsgrid.min.js"></script>
-    <script src="../src/js/script.js"></script>
+    <script src="../assets/js/script.js"></script>
 </body>
 
 </html>

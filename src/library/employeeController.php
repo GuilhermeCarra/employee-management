@@ -1,4 +1,5 @@
 <?php
+
 require('employeeManager.php');
 
 switch($_SERVER["REQUEST_METHOD"]) {
@@ -36,5 +37,3 @@ switch($_SERVER["REQUEST_METHOD"]) {
         echo deleteEmployee($_DELETE['id']);
         break;
 }
-
-?>

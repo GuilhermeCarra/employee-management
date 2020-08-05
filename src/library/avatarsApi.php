@@ -1,6 +1,7 @@
 <?php
 
-function getAvatars() {
+function getAvatars()
+{
     //$avatarsResponse = json_decode(file_get_contents("../resources/images_mock.json"));
 
     $ch = curl_init();
@@ -18,10 +19,8 @@ function getAvatars() {
 
     $avatarsResponse = json_decode($output);
 
-    foreach($avatarsResponse as $avatar) {
+    foreach ($avatarsResponse as $avatar) {
         $avatars[] = $avatar->photo;
     }
     return $avatars;
 }
-
-?>

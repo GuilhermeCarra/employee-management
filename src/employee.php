@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
 </head>
 
 <body id="employeePage">
@@ -118,7 +118,7 @@ if (isset($_GET['id'])) {
 
             <script src="../node_modules/jquery/dist/jquery.min.js"></script>
             <script src="../node_modules/jsgrid/dist/jsgrid.min.js"></script>
-            <script src="../src/js/script.js"></script>
+            <script src="../assets/js/script.js"></script>
 
 </body>
 

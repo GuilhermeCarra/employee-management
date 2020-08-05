@@ -135,7 +135,7 @@ function removeAvatar($id)
 
 function getQueryStringParameters(): array
 {
-    // TODO implement it
+    return $_GET;
 }
 
 function getNextIdentifier(array $employeesCollection): int
