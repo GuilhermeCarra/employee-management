@@ -48,7 +48,7 @@ if (isset($_SESSION['name'])) {
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="assets/src/js/script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
