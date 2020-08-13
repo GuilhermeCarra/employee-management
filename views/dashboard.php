@@ -1,7 +1,4 @@
-<?php
-require('library/sessionHelper.php');
-?>
-
+<?php include_once LIBS . "sessionHelper.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 

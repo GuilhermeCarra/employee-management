@@ -1,5 +1,6 @@
 <?php
-require('library/sessionHelper.php');
+
+include_once LIBS . "sessionHelper.php";
 
 $method = "POST";  // $method variable defines if its an Employee Update (PUT) or new Employee creation (POST)
 
