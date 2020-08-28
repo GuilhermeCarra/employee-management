@@ -1,43 +1,47 @@
 <?php
 
-function login()
+/**
+ * Login validation.
+ * @param {array} $request
+ */
+function userLogin($request)
 {
-    function getUser($users, $email)
-    {
-        foreach ($users as $user) {
-            if ($email === $user->email) return $user;
-        }
-        return false;
-    }
+   $email = $request["email"];
+   $pwd = $request["pwd"];
 
-    session_start();
+   require_once 'libs/database.php';
+   
+   $conn = connectDatabase();
+   $query = "SELECT * FROM user WHERE email='$email' LIMIT 1;";
+   $stmt = $conn->prepare($query);
+   $stmt->execute();
 
-    $users = json_decode(file_get_contents('resources/users.json'))->users;
-    $user = getUser($users, $_REQUEST['email']);
-
-    if (!$user) {
-        $_SESSION['error'] = 'email';
-        header("Location: index.php");
-        return;
-    }
-
-    if (!password_verify($_REQUEST['password'], $user->password)) {
-        $_SESSION['error'] = 'password';
-        header("Location: index.php");
-        return;
-    }
-
-    $_SESSION['name'] = $user->name;
-    $_SESSION['id'] = $user->userId;
-    $_SESSION['endTime'] = time() + 600;
-    header("Location: index.php?controller=employee&action=getEmployees");
+   if ($stmt->rowCount()) {
+      $result = $stmt->fetch(PDO::FETCH_OBJ);
+      if (password_verify($pwd, $result->password)) {
+         $_SESSION['logged'] = true;
+         $_SESSION['userId'] = $user->userId;
+         $_SESSION['username'] = $user->name;
+         $_SESSION['email'] = $user->email;
+         $_SESSION['logTime'] = time();
+         return true;
+      } else {
+         $_SESSION['wrong-pwd'] = true;
+         if (isset($_SESSION['wrong-email'])) unset($_SESSION['wrong-email']);
+         return false;
+      }
+   } else {
+      $_SESSION['wrong-email'] = true;
+      if (isset($_SESSION['wrong-pwd'])) unset($_SESSION['wrong-pwd']);
+      return false;
+   }
 }
 
-
-function logout()
+/**
+ * Close session
+ */
+function userLogOut()
 {
-    session_start();
-    session_destroy();
-    session_unset();
-    header("Location: index.php");
+   session_destroy();
+   session_unset();
 }

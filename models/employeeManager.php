@@ -1,170 +1,117 @@
 <?php
 
-/**
- * EMPLOYEE FUNCTIONS LIBRARY
- *
- * @author: Jose Manuel Orts
- * @date: 11/06/2020
- */
+function getEmployees() {
 
+    require_once 'libs/database.php';
 
-function getAllEmployees()
-{
-    $employeesJSON = json_decode(file_get_contents("resources/employees.json"));
-    return json_encode($employeesJSON);
+    $conn = connectDatabase();
+    $stmt = $conn->prepare("SELECT * FROM employees");
+    $stmt->execute();
+
+    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+    return json_encode($result);
 }
 
 function addEmployee(array $newEmployee)
 {
-    $employeesJSON = json_decode(file_get_contents("resources/employees.json"));
+// TODO implement it
 
-    // Making a new employee object to inset on JSON
-    $employeeObj = new stdClass();
-    $employeeObj->id = getNextIdentifier($employeesJSON);
-    $employeeObj->name = $newEmployee["name"];
-    $employeeObj->lastName = $newEmployee["lastName"];
-    $employeeObj->email = $newEmployee["email"];
-    $employeeObj->gender = $newEmployee["gender"];
-    $employeeObj->age = intval($newEmployee["age"]);
-    $employeeObj->streetAddress = $newEmployee["streetAddress"];
-    $employeeObj->city = $newEmployee["city"];
-    $employeeObj->state = $newEmployee["state"];
-    $employeeObj->postalCode = $newEmployee["postalCode"];
-    $employeeObj->phoneNumber = $newEmployee["phoneNumber"];
-    if (isset($newEmployee["avatar"])) $employeeObj->avatar = $newEmployee["avatar"];
+    require_once 'libs/database.php';
 
-    // Inserting employee in JSON variable
-    $employeesJSON[] = $employeeObj;
+    $conn = connectDatabase();
 
-    // Sorting JSON array by Employee ID
-    $employeesJSON = sortEmployeesById($employeesJSON);
+    $stmt = $conn->prepare("INSERT INTO employees (name,email,age,city,phoneNumber,postalCode,state,streetAddress) VALUES ('" . $newEmployee['name'] . "', '" . $newEmployee['email'] . "', " . $newEmployee['age'] . ", '" . $newEmployee['city'] . "',  '" . $newEmployee['phoneNumber'] ."', " .  $newEmployee['postalCode'] .", '" . $newEmployee['state'] . "', '" . $newEmployee['streetAddress'] . "')");
+    
+    if ($stmt->execute()) {
+        $stmt = $conn->prepare("SELECT * FROM employees WHERE name='". $newEmployee['name'] ."' AND email='" .$newEmployee['email'] ."' LIMIT 1 " );
+        $stmt->execute();
 
-    // Saving JSON with the new Employee on local file
-    file_put_contents("resources/employees.json", json_encode($employeesJSON, JSON_PRETTY_PRINT));
+        if($stmt->rowCount()) {
+           $result = $stmt->fetch(PDO::FETCH_ASSOC); 
+           echo json_encode($result);
+        }
 
-    // If it was created with employe.php redirect to employee page, if it's was created with jsGrid table returns the employee
-    if (isset($_POST['POST'])) {
-        header('Location: ../employee.php?employeeCreated&id=' . $employeeObj->id);
-    } else {
-        return json_encode($employeeObj);
-    }
+    };
 }
-
 
 function deleteEmployee(string $id)
 {
-    $employeesJSON = json_decode(file_get_contents("resources/employees.json"));
+// TODO implement it
+    require_once 'libs/database.php';
 
-    // Searching for the Employee by his ID
-    foreach ($employeesJSON as $key => $employee) {
-        if ($id == $employee->id) {
+    $conn = connectDatabase();
 
-            // Saving Employee name to return it later
-            $name = $employee->name . " " . $employee->lastName;
-
-            // Delete the employee from JSON array
-            array_splice($employeesJSON, $key, 1);
-
-            // Saving updated JSON on local file
-            file_put_contents("resources/employees.json", json_encode($employeesJSON, JSON_PRETTY_PRINT));
-
-            return "Deleted employee: " . $name . "!";
-        }
-    }
+    $stmt = $conn->prepare("DELETE FROM employees WHERE id=". $id);
+    $stmt->execute();
 }
 
+function getEmployee(string $id){
 
-function updateEmployee(array $updateEmployee)
-{
-    $employeesJSON = json_decode(file_get_contents("resources/employees.json"));
+    require_once 'libs/database.php';
 
-    // Searching for the Employee by his ID and change his informations
-    foreach ($employeesJSON as $employee) {
-        if ($updateEmployee["id"] == $employee->id) {
-            $employee->name = $updateEmployee["name"];
-            $employee->lastName = $updateEmployee["lastName"];
-            $employee->email = $updateEmployee["email"];
-            $employee->gender = $updateEmployee["gender"];
-            $employee->age = intval($updateEmployee["age"]);
-            $employee->streetAddress = $updateEmployee["streetAddress"];
-            $employee->city = $updateEmployee["city"];
-            $employee->state = $updateEmployee["state"];
-            $employee->postalCode = $updateEmployee["postalCode"];
-            $employee->phoneNumber = $updateEmployee["phoneNumber"];
-            if (isset($updateEmployee["avatar"])) $employee->avatar = $updateEmployee["avatar"];
-        }
-    }
+    $conn = connectDatabase();
 
-    // Saving updated JSON on local file
-    file_put_contents("resources/employees.json", json_encode($employeesJSON, JSON_PRETTY_PRINT));
-
-    header('Location: ../employee.php?employeeUpdated&id=' . $updateEmployee["id"]);
+    $stmt = $conn->prepare("SELECT * FROM employees WHERE id=". $id . " LIMIT 1");
+    if ($stmt->execute() && $stmt->rowCount()) {
+        $result = $stmt->fetch(PDO::FETCH_OBJ);
+        return $result;
+    };
 }
 
+function updateEmployee($id, $nEmployee){
+  //API KEY -> 4B25747F-51664BE8-97A405EA-4437BFA2
 
-function getEmployee(string $id)
-{
-    $employeesJSON = json_decode(file_get_contents("../resources/employees.json"));
+  require_once 'libs/database.php';
 
-    // Searching for the Employee by his ID and then return it
-    foreach ($employeesJSON as $employee) {
-        if ($employee->id == $id) {
-            return json_encode($employee);
+  $conn = connectDatabase();
+
+  if($id !== "") {
+    $stmt = $conn->prepare("UPDATE employees SET name = '" 
+    . $nEmployee['name'] . "', lastName = '" 
+    . $nEmployee['lastName'] . "', age = " 
+    . $nEmployee['age'] . ", city='" 
+    . $nEmployee['city'] . "', email='" 
+    . $nEmployee['email'] . "', gender='" 
+    . $nEmployee['gender'] . "', phoneNumber='" 
+    . $nEmployee['phoneNumber'] . "', postalCode=" 
+    . $nEmployee['postalCode'] . ", state='" 
+    . $nEmployee['state'] . "', streetAddress='" 
+    . $nEmployee['streetAddress'] . "', img='" 
+    . $nEmployee['img'] 
+    ."' WHERE id=" . $id);
+    
+    $stmt->execute();
+    return 'modified';
+  } else {
+    $stmt = $conn->prepare("INSERT INTO employees (name,lastName,age,city,email,gender,phoneNumber,postalCode,state,streetAddress,img) VALUES ('" 
+    . $nEmployee['name'] . "','" 
+    . $nEmployee['lastName'] . "'," 
+    . $nEmployee['age'] . ",'" 
+    . $nEmployee['city'] . "','" 
+    . $nEmployee['email'] . "','" 
+    . $nEmployee['gender'] . "','" 
+    . $nEmployee['phoneNumber'] . "'," 
+    . $nEmployee['postalCode'] . ",'" 
+    . $nEmployee['state'] . "','" 
+    . $nEmployee['streetAddress'] . "','" 
+    . $nEmployee['img'] ."')");
+
+    if ($stmt->execute()) {
+        $stmt = $conn->prepare("SELECT id FROM employees WHERE name='". $nEmployee['name'] ."' AND email='" .$nEmployee['email'] ."' LIMIT 1 " );
+        $stmt->execute();
+
+        if($stmt->rowCount()) {
+           $result = $stmt->fetch(); 
+           echo $result['id'];
         }
     }
-}
-
-
-function removeAvatar($id)
-{
-    $employeesJSON = json_decode(file_get_contents("resources/employees.json"));
-
-    // Searching for the Employee by his ID and then return it
-    foreach ($employeesJSON as $employee) {
-        if ($employee->id == $id) {
-            unset($employee->avatar);
-        }
-    }
-
-    file_put_contents("resources/employees.json", json_encode($employeesJSON, JSON_PRETTY_PRINT));
-
-    // Return imageGallery.php content to append on page and user choose new avatars
-    return header('Location: ../imageGallery.php');
-}
-
-
-function getQueryStringParameters(): array
-{
-    return $_GET;
+  }
 }
 
 function getNextIdentifier(array $employeesCollection): int
 {
-    $counter = 0;
-
-    foreach ($employeesCollection as $key => $employee) {
-
-        // If it's the last Employee and there's no gap between Employees IDs, then the new Employee receives the last Employee's ID added by one.
-        if ($counter == count($employeesCollection) - 1) {
-            return $employee->id + 1;
-        }
-
-        // If the ID number of the actual employee and the next one have difference greater than 1, the new Employee gets an ID of the actual Employee add by one.
-        if ($employee->id + 1 != $employeesCollection[$key + 1]->id) {
-            return $employee->id + 1;
-        }
-        $counter = $counter + 1;
-    }
-}
-
-// Function to sort JSON file by Employee ID
-function sortEmployeesById($employeesJSON)
-{
-    function cmp($a, $b)
-    {
-        return strcmp($a->id, $b->id);
-    }
-
-    usort($employeesJSON, "cmp");
-    return $employeesJSON;
+// TODO implement it
+  $nextId = $employeesCollection[count($employeesCollection)-1]->id + 1;
+  return $nextId;
 }

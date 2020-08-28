@@ -18,19 +18,19 @@
                 <div class="col-4">
                     <form class="form-horizontal" method="post" action="index.php">
                         <input type="hidden" name="controller" value="login">
-                        <input type="hidden" name="action" value="login">
+                        <input type="hidden" name="action" value="loginValidation">
                         <div class="form_icon"><i class="fa fa-user-circle"></i></div>
                         <h3 class="title">admin login</h3>
                         <div class="form-group">
                             <span class="input-icon"><i class="fa fa-user"></i></span>
                             <input type="email" class="form-control" name="email" placeholder="Insert an Email">
                         </div>
-                        <?php if (isset($_SESSION['error']) && $_SESSION['error'] === 'email') echo '<div class="alert alert-danger">Email not found</div>' ?>
+                        <?php if (isset($_SESSION['wrong-email'])) echo '<div class="alert alert-danger">Email not found</div>' ?>
                         <div class="form-group">
                             <span class="input-icon"><i class="fa fa-lock"></i></span>
-                            <input type="password" class="form-control" name="password" placeholder="Insert a Password">
+                            <input type="password" class="form-control" name="pwd" placeholder="Insert a Password">
                         </div>
-                        <?php if (isset($_SESSION['error']) && $_SESSION['error'] === 'password') echo '<div class="alert alert-danger">Wrong password</div>' ?>
+                        <?php if (isset($_SESSION['wrong-pwd'])) echo '<div class="alert alert-danger">Wrong password</div>' ?>
                         <button type="submit" class="loginBtn">Log in</button>
                     </form>
                 </div>
@@ -38,8 +38,8 @@
             </div>
         </div>
     </div>
-    <div id="loginError"></div>
 
+    <script src="https://kit.fontawesome.com/de217cab6a.js"></script>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

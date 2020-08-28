@@ -1,25 +1,39 @@
 <?php
+require MODELS . 'employeeManager.php';
 
-include_once MODELS . 'employeeManager.php';
+function getEmployeesCont() {
+  
+    $employees = getEmployees();
 
-if (isset($_REQUEST["action"])) {
-    if (function_exists($_REQUEST["action"])) {
-        call_user_func($_REQUEST["action"]);
-    } else {
-        $errorMsg = "The requested action does not exist";
-        include_once VIEWS . "error.php";
-    }
-} else {
-    header("Location: index.php?controller=employee&action=getEmployees");
+    if($employees) require_once VIEWS . "employees/dashboard.php";
+
+    return $employees;
+  
 }
 
-function getEmployees()
-{
-    $employees = getAllEmployees();
-    include_once VIEWS . "dashboard.php";
+function getEmployeeCont($request){
+   $employee = getEmployee($request["id"]);
+   return $employee;
 }
 
-function editEmployee()
-{
-    include_once VIEWS . "employee.php";
+function addEmployeeAjax () {
+    echo addEmployee($_POST['newEmployee']);
+}
+
+function deleteEmployeeAjax () {
+    parse_str(file_get_contents("php://input"), $_DELETE);
+    deleteEmployee($_DELETE['deleteId']);
+}
+
+function updateEmployeeCont ($request) {
+   echo updateEmployee($request['id'], $request);
+}
+
+function addEditEmployee(){
+   $getId = isset($_REQUEST["id"]);
+   $employee = false;
+   if($getId){
+      $employee = getEmployeeCont($_REQUEST);
+   }
+   require_once VIEWS . "employees/employee.php";
 }

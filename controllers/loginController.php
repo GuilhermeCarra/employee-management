@@ -1,15 +1,16 @@
 <?php
 
-include_once MODELS . 'loginManager.php';
+require MODELS . 'loginManager.php';
 
-if (isset($_REQUEST["action"])) {
-    if (function_exists($_REQUEST["action"])) {
-        call_user_func($_REQUEST["action"]);
-    } else {
-        $errorMsg = "The requested action does not exist";
-        include_once VIEWS . "error.php";
-    }
-} else {
-    $errorMsg = "The requested controller does not exist";
-    include_once VIEWS . "error.php";
+function loginValidation($request){
+   if(userLogin($request)){
+      header("Location: index.php?controller=employee&action=getEmployeesCont");
+   }else{
+      header("Location: index.php");
+   }
+}
+
+function logout(){
+   userLogOut();
+   header("Location: index.php");
 }

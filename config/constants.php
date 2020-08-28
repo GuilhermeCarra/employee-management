@@ -1,6 +1,6 @@
 <?php
 
-//BASE PATH
+// ROOT
 define("BASE_PATH", getcwd());
 
 //CONTROLLERS
@@ -14,6 +14,3 @@ define("MODELS", BASE_PATH . '/models/');
 
 //RESOURCES
 define("RESOURCES", BASE_PATH . '/resources/');
-
-// LIBS
-define("LIBS", BASE_PATH . '/libs/');
