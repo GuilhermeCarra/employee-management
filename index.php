@@ -10,7 +10,7 @@ if (isset($_REQUEST["controller"])) {
     if (file_exists($controller)) include_once $controller;
     else {
         $errorMsg = "The requested controller does not exist";
-        include_once VIEWS . "error/error.php";
+        include_once VIEWS . "error.php";
     }
 } else {
     if (isset($_SESSION['name'])) {
