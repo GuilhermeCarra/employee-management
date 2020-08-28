@@ -5,20 +5,21 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand pl-2" href="dashboard.php"><img class="logo"src="../assets/img/assembler.png"></a>
+            <a class="navbar-brand pl-2" href="index.php"><img class="logo" src="assets/img/assembler.png"></a>
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 <li class="nav-item mt-2 ml-2">
-                    <a class="mr-3 text-body nav-li" href="dashboard.php">Dashboard</a>
+                    <a class="mr-3 text-body nav-li" href="?controller=employee&action=getEmployees">Dashboard</a>
                 </li>
                 <li class="nav-item mt-2">
-                    <a class="mr-3 text-body nav-li" href="employee.php">Employee</a>
+                    <a class="mr-3 text-body nav-li" href="?controller=employee&action=editEmployee">Employee</a>
                 </li>
                 <!-- LOGOUT BUTTON -->
-                <form method="POST" action="library/loginController.php">
-                    <input class="btn btn-dark mr-5 logOut" type="submit" name="logout" value="Log Out" />
+                <form method="POST" action="index.php">
+                    <input type="hidden" name="controller" value="login">
+                    <input type="hidden" name="action" value="logout">
+                    <input class="btn btn-dark mr-5 logOut" type="submit" name="logout" value="Log Out">
                 </form>
             </ul>
         </div>
     </nav>
 </header>
-

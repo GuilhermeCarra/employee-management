@@ -10,13 +10,13 @@
 
 function getAllEmployees()
 {
-    $employeesJSON = json_decode(file_get_contents("../../resources/employees.json"));
+    $employeesJSON = json_decode(file_get_contents("resources/employees.json"));
     return json_encode($employeesJSON);
 }
 
 function addEmployee(array $newEmployee)
 {
-    $employeesJSON = json_decode(file_get_contents("../../resources/employees.json"));
+    $employeesJSON = json_decode(file_get_contents("resources/employees.json"));
 
     // Making a new employee object to inset on JSON
     $employeeObj = new stdClass();
@@ -40,7 +40,7 @@ function addEmployee(array $newEmployee)
     $employeesJSON = sortEmployeesById($employeesJSON);
 
     // Saving JSON with the new Employee on local file
-    file_put_contents("../../resources/employees.json", json_encode($employeesJSON, JSON_PRETTY_PRINT));
+    file_put_contents("resources/employees.json", json_encode($employeesJSON, JSON_PRETTY_PRINT));
 
     // If it was created with employe.php redirect to employee page, if it's was created with jsGrid table returns the employee
     if (isset($_POST['POST'])) {
@@ -53,7 +53,7 @@ function addEmployee(array $newEmployee)
 
 function deleteEmployee(string $id)
 {
-    $employeesJSON = json_decode(file_get_contents("../../resources/employees.json"));
+    $employeesJSON = json_decode(file_get_contents("resources/employees.json"));
 
     // Searching for the Employee by his ID
     foreach ($employeesJSON as $key => $employee) {
@@ -66,7 +66,7 @@ function deleteEmployee(string $id)
             array_splice($employeesJSON, $key, 1);
 
             // Saving updated JSON on local file
-            file_put_contents("../../resources/employees.json", json_encode($employeesJSON, JSON_PRETTY_PRINT));
+            file_put_contents("resources/employees.json", json_encode($employeesJSON, JSON_PRETTY_PRINT));
 
             return "Deleted employee: " . $name . "!";
         }
@@ -76,7 +76,7 @@ function deleteEmployee(string $id)
 
 function updateEmployee(array $updateEmployee)
 {
-    $employeesJSON = json_decode(file_get_contents("../../resources/employees.json"));
+    $employeesJSON = json_decode(file_get_contents("resources/employees.json"));
 
     // Searching for the Employee by his ID and change his informations
     foreach ($employeesJSON as $employee) {
@@ -96,7 +96,7 @@ function updateEmployee(array $updateEmployee)
     }
 
     // Saving updated JSON on local file
-    file_put_contents("../../resources/employees.json", json_encode($employeesJSON, JSON_PRETTY_PRINT));
+    file_put_contents("resources/employees.json", json_encode($employeesJSON, JSON_PRETTY_PRINT));
 
     header('Location: ../employee.php?employeeUpdated&id=' . $updateEmployee["id"]);
 }
@@ -117,7 +117,7 @@ function getEmployee(string $id)
 
 function removeAvatar($id)
 {
-    $employeesJSON = json_decode(file_get_contents("../../resources/employees.json"));
+    $employeesJSON = json_decode(file_get_contents("resources/employees.json"));
 
     // Searching for the Employee by his ID and then return it
     foreach ($employeesJSON as $employee) {
@@ -126,7 +126,7 @@ function removeAvatar($id)
         }
     }
 
-    file_put_contents("../../resources/employees.json", json_encode($employeesJSON, JSON_PRETTY_PRINT));
+    file_put_contents("resources/employees.json", json_encode($employeesJSON, JSON_PRETTY_PRINT));
 
     // Return imageGallery.php content to append on page and user choose new avatars
     return header('Location: ../imageGallery.php');

@@ -1,27 +1,43 @@
 <?php
 
-function validateLogin($email, $password)
+function login()
 {
-    $foundUser = false;
-    $usersJSON = json_decode(file_get_contents('../resources/users.json'));
-    foreach ($usersJSON->users as $user) {
-        if ($user->email == $email && (password_verify($password, $user->password))) {
-            session_start();
-            $_SESSION['name'] = $user->name;
-            $_SESSION['id'] = $user->userId;
-            $_SESSION['endTime'] = time() + 600;
-            $foundUser = true;
-            return "success";
+    function getUser($users, $email)
+    {
+        foreach ($users as $user) {
+            if ($email === $user->email) return $user;
         }
+        return false;
     }
-    if ($foundUser == false) {
-        return "unauthorized";
+
+    session_start();
+
+    $users = json_decode(file_get_contents('resources/users.json'))->users;
+    $user = getUser($users, $_REQUEST['email']);
+
+    if (!$user) {
+        $_SESSION['error'] = 'email';
+        header("Location: index.php");
+        return;
     }
+
+    if (!password_verify($_REQUEST['password'], $user->password)) {
+        $_SESSION['error'] = 'password';
+        header("Location: index.php");
+        return;
+    }
+
+    $_SESSION['name'] = $user->name;
+    $_SESSION['id'] = $user->userId;
+    $_SESSION['endTime'] = time() + 600;
+    header("Location: index.php?controller=employee&action=getEmployees");
 }
 
-function logOut($location)
+
+function logout()
 {
     session_start();
     session_destroy();
-    header('Location: ' . $location);
+    session_unset();
+    header("Location: index.php");
 }

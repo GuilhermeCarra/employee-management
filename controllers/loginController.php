@@ -1,17 +1,7 @@
 <?php
 
-require('loginManager.php');
+require MODELS . 'loginManager.php';
 
-if (isset($_POST['login'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    if (validateLogin($email, $password) == "success") {
-        http_response_code(201);
-    } else {
-        http_response_code(401);
-    }
-}
-
-if (isset($_POST['logout'])) {
-    logOut('../../');
+if (isset($_REQUEST["action"]) && function_exists($_REQUEST["action"])) {
+    call_user_func($_REQUEST["action"]);
 }

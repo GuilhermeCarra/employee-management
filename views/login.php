@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/login.css">
-    <title>Employee Management</title>
+    <title>Login</title>
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
 </head>
 
@@ -16,21 +16,23 @@
             <div class="row">
                 <div class="col-4"></div>
                 <div class="col-4">
-                    <div class="form-horizontal">
+                    <form class="form-horizontal" method="post" action="index.php">
+                        <input type="hidden" name="controller" value="login">
+                        <input type="hidden" name="action" value="login">
                         <div class="form_icon"><i class="fa fa-user-circle"></i></div>
                         <h3 class="title">admin login</h3>
                         <div class="form-group">
                             <span class="input-icon"><i class="fa fa-user"></i></span>
-                            <input class="form-control" type="email" id="email" placeholder="Insert an Email" />
+                            <input type="email" class="form-control" name="email" placeholder="Insert an Email">
                         </div>
+                        <?php if (isset($_SESSION['error']) && $_SESSION['error'] === 'email') echo '<div class="alert alert-danger">Email not found</div>' ?>
                         <div class="form-group">
                             <span class="input-icon"><i class="fa fa-lock"></i></span>
-                            <input class="form-control" type="password" id="password" placeholder="Insert a Password" />
+                            <input type="password" class="form-control" name="password" placeholder="Insert a Password">
                         </div>
-
-                        <button class="loginBtn" id="loginBtn">Log in</button>
-
-                    </div>
+                        <?php if (isset($_SESSION['error']) && $_SESSION['error'] === 'password') echo '<div class="alert alert-danger">Wrong password</div>' ?>
+                        <button type="submit" class="loginBtn">Log in</button>
+                    </form>
                 </div>
                 <div class="col-4"></div>
             </div>
@@ -41,7 +43,6 @@
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
