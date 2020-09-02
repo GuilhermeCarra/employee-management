@@ -25,7 +25,7 @@ document.querySelector('#submitForm').addEventListener('click', e => {
    e.preventDefault();
 
    if (checkInputs()) {
-      $.ajax({
+      /* $.ajax({
          type: 'post',
          url: 'index.php?controller=employee&action=updateEmployeeCont',
          data: {
@@ -62,13 +62,33 @@ document.querySelector('#submitForm').addEventListener('click', e => {
             alertMsg.classList.add('alert-danger');
             alertMsg.classList.replace('d-none', 'd-flex');
          }
-      });
+      }); */
+      document.getElementById("employeeForm").submit();
    } else {
       alertMsg.textContent = 'Please, correct the highlighted errors.';
       alertMsg.classList.add('alert-danger');
       alertMsg.classList.replace('d-none', 'd-flex');
    };
 });
+
+function alertsMsg(response) {
+   if (response.includes('modified') || parseInt(response) >= 0) {
+      alertMsg.textContent = ((response.includes('modified')) ? 'All changes applied! ' : `New employee created (id ${response}). `) + 'Redirecting to main page...';
+      alertMsg.classList.remove('alert-danger');
+      alertMsg.classList.add('alert-success');
+      alertMsg.classList.replace('d-none', 'd-flex');
+      setTimeout(() => {
+         //let newUrl = window.location.href.replace('index.php?controller=employee&action=getEmployeesCont')
+         window.location.href = path+'/employeeController/getEmployeesCont/';
+         alertMsg.classList.replace('d-flex', 'd-none');
+         alertMsg.classList.remove('alert-success');
+      }, 3000);
+   } else {
+      alertMsg.textContent = 'Oops, error ' + response.status + '. Please, try again later.';
+      alertMsg.classList.add('alert-danger');
+      alertMsg.classList.replace('d-none', 'd-flex');
+   }
+}
 
 
 function checkInputs() {

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,9 +21,10 @@
             </div>
             <div id="profilePicSelect" class="profile__img--selector d-none flex-wrap justify-content-sm-between justify-content-center mt-3">
             </div>
-            <form id="employeeForm" class="my-5" name="employeeInfo" method="POST" action="index.php">
-                <input type="hidden" name="controller" value="employee">
-                <input type="hidden" name="action" value="updateEmployeeCont">
+            <form id="employeeForm" class="my-5" name="employeeInfo" method="POST" action="<?= isset($employee) ? BASE_URL."/employeeController/updateEmployeeCont/".$url[2]: BASE_URL."/employeeController/updateEmployeeCont" ?>">
+                <!-- <input type="hidden" name="controller" value="employee">
+                <input type="hidden" name="action" value="updateEmployeeCont"> -->
+                <input type="hidden" name="img" value="<?= $employee && isset($employee->img) ? $employee->img : '' ?>">
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -77,7 +77,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="phone">Phone Number</label>
-                        <input type="tel" name="phone" id="phoneInp" class="form-control" placeholder="Phone number" value="<?= $employee && isset($employee->phoneNumber) ? $employee->phoneNumber : "" ?>">
+                        <input type="tel" name="phoneNumber" id="phoneInp" class="form-control" placeholder="Phone number" value="<?= $employee && isset($employee->phoneNumber) ? $employee->phoneNumber : "" ?>">
                         <input type="hidden" name="id" id="id" value="<?= $employee && isset($employee->id) ? $employee->id : "" ?>">
                     </div>
                 </div>
@@ -96,4 +96,13 @@
     <script src="<?= BASE_URL ?>/assets/js/utils.js"></script>
 </body>
 
+
 </html>
+<?php
+    if(isset($_SESSION['response'])) {
+        echo $_SESSION['response'];
+        echo '<script> var path = "'.BASE_URL.'"</script>';
+        echo '<script> alertsMsg("'.$_SESSION['response'].'")</script>';
+        unset($_SESSION['response']);
+    }
+?>

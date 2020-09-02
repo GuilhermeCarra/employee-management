@@ -103,7 +103,7 @@ function updateEmployee($id, $nEmployee){
 
         if($stmt->rowCount()) {
            $result = $stmt->fetch(); 
-           echo $result['id'];
+           return $result['id'];
         }
     }
   }

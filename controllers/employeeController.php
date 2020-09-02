@@ -9,11 +9,11 @@ class employeeController extends Controller {
 
    function getEmployeesCont() {
 
-       $employees = getEmployees();
+      $employees = getEmployees();
 
-       if($employees) require_once VIEWS . "employees/dashboard.php";
+      if($employees) require_once VIEWS . "employees/dashboard.php";
 
-       return $employees;
+      return $employees;
 
    }
 
@@ -23,16 +23,19 @@ class employeeController extends Controller {
    }
 
    function addEmployeeAjax () {
-       echo addEmployee($_POST['newEmployee']);
+      echo addEmployee($_POST['newEmployee']);
    }
 
    function deleteEmployeeAjax () {
-       parse_str(file_get_contents("php://input"), $_DELETE);
-       deleteEmployee($_DELETE['deleteId']);
+      parse_str(file_get_contents("php://input"), $_DELETE);
+      deleteEmployee($_DELETE['deleteId']);
    }
 
-   function updateEmployeeCont ($request) {
-      echo updateEmployee($request['id'], $request);
+   function updateEmployeeCont() {
+      $url = explode('/', $_GET['url']);
+      $id = isset($url[2]) ? $url[2] : "";
+      $_SESSION['response'] = updateEmployee($id, $_REQUEST);
+      header('Location: '.BASE_URL.'/employeeController/addEditEmployee');
    }
 
    function addEditEmployee(){
