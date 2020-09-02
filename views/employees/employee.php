@@ -12,7 +12,7 @@
 
 <body>
     <div class="main d-flex flex-column justify-content-between">
-        <?php include('assets/html/header.html') ?>
+        <?php include('assets/html/header.php') ?>
         <div class='main__content d-flex justify-content-center align-items-center flex-column'>
             <div id="formErrMsg" class="d-none errorMsg mb-4 align-items-center justify-content-center alert">
                 <span>Please, correct the highlighted errors.</span>

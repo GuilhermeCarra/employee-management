@@ -12,7 +12,7 @@ class App {
         } else {
             // Verify if a controller exists on URL, if there's no controller, set controller to employee
             if (!isset($_GET['url'])) {
-                header("Location: employeeController/getEmployeesCont/");
+                header("Location: employeeController/getEmployeesCont");
             } else {
                 $url = $_GET['url'];
                 $url = rtrim($url, '/');
@@ -27,6 +27,8 @@ class App {
 
                 if(isset($url[1])){
                     $controller->{$url[1]}();
+                } else {
+
                 }
             } else {
                 $errorMsg = 'Controller "' . $url[0] .  '" file does not exist';

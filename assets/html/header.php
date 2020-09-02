@@ -6,7 +6,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
          <a class="navbar-brand pl-2" href="?controller=employee&action=getEmployeesCont"><img class="logo"
-               src="assets/img/assembler.png"></a>
+               src="<?= BASE_URL ?>/assets/img/assembler.png"></a>
          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item mt-2 ml-2">
                <a class="mr-3 text-body nav-li" href="../../employeeController/getEmployeesCont/">Dashboard</a>

@@ -17,7 +17,7 @@
 </head>
 
     <div class="main d-flex flex-column justify-content-between">
-        <?php include('assets/html/header.html') ?>
+        <?php include('assets/html/header.php') ?>
         <div class='main__content d-flex justify-content-center align-items-center flex-column'>
             
             <div class="container" id="error-message">
