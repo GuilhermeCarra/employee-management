@@ -16,9 +16,9 @@
             <div class="row">
                 <div class="col-4"></div>
                 <div class="col-4">
-                    <form class="form-horizontal" method="post" action="index.php">
-                        <input type="hidden" name="controller" value="login">
-                        <input type="hidden" name="action" value="loginValidation">
+                    <form class="form-horizontal" method="post" action="loginController/loginValidation">
+                        <!-- <input type="hidden" name="controller" value="login">
+                        <input type="hidden" name="action" value="loginValidation"> -->
                         <div class="form_icon"><i class="fa fa-user-circle"></i></div>
                         <h3 class="title">admin login</h3>
                         <div class="form-group">

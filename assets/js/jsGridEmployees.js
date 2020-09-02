@@ -1,3 +1,4 @@
+console.log(employees);
 
   callGrid(JSON.parse(employees));
 

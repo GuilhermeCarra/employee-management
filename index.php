@@ -2,10 +2,12 @@
 <?php
 session_start();
 include_once "config/constants.php";
-require_once "libs/sessionHelper.php";
+include_once LIBS . "app.php";
+//require_once "libs/sessionHelper.php";
 
+$app = new App();
 
-if (isset($_REQUEST["controller"])) {
+/* if (isset($_REQUEST["controller"])) {
    $controller = getControllerPath($_REQUEST["controller"]);
    if(!isset($_SESSION["logged"])){
       require_once(VIEWS . "main/main.php");
@@ -18,7 +20,7 @@ if (isset($_REQUEST["controller"])) {
          call_user_func("error", "Action '" . $_REQUEST["action"] . "' not found");
       }
    } else {
-        error("Controller '" . $_REQUEST['controller'] . "' not found!");
+      error("Controller '" . $_REQUEST['controller'] . "' not found!");
    }
 } else {
    if(isset($_SESSION["logged"])){
@@ -28,19 +30,15 @@ if (isset($_REQUEST["controller"])) {
    }
 
 }
-/**
- * Get absolute path of controller.
- * @param {String} $controller name of the controller
- * @return {String} Absolute path.
- */
+
+function error($errorMsg)
+{
+   require_once VIEWS . "error/error.php";
+} */
+
 function getControllerPath($controller)
 {
    return CONTROLLERS . $controller . "Controller.php";
 }
 
-function error($errorMsg)
-{
-    require_once VIEWS . "error/error.php";
-}
-
-?> 
+?>

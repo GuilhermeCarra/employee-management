@@ -16,8 +16,8 @@
     <?php include('assets/html/header.html') ?>
     <div class='main__content d-flex justify-content-center align-items-center flex-column'>
         <div class="container" id="jsGrid">
-            <script>
-                var employees = '<?php echo getEmployeesCont() ?>';
+            <script type='text/javascript'>
+                <?php echo "var employees = '".$employees."';" ?>
             </script>
         </div>
     </div>
