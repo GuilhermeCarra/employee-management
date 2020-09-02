@@ -15,7 +15,7 @@
                <a class="mr-3 text-body nav-li" href="../../employeeController/addEditEmployee/">Employee</a>
             </li>
             <!-- LOGOUT BUTTON -->
-            <form method="POST" action="../../loginController/logout/">
+            <form method="POST" action="<?= BASE_URL ?>/loginController/logout/">
                <!-- <input type="hidden" name="controller" value="login">
                <input type="hidden" name="action" value="logout"> -->
                <input class="btn btn-dark mr-5 logOut" type="submit" name="logout" value="Log Out">

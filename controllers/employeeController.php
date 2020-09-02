@@ -36,10 +36,11 @@ class employeeController extends Controller {
    }
 
    function addEditEmployee(){
-      $getId = isset($_REQUEST["id"]);
+      $url = explode('/', $_GET['url']);
+      $getId = isset($url[2]);
       $employee = false;
       if($getId){
-         $employee = getEmployeeCont($_REQUEST);
+         $employee = getEmployee($url[2]);
       }
       require_once VIEWS . "employees/employee.php";
    }

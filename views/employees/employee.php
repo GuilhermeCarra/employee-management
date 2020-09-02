@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Management</title>
-    <link rel="icon" type="image/png" href="assets/img/favicon.png">
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="icon" type="image/png" href="<?= BASE_URL ?>/assets/img/favicon.png">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="<?= CSS ?>/main.css">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
                 <span>Please, correct the highlighted errors.</span>
             </div>
             <div id="profilePicCont" class="profile__img img-container">
-                <img src="<?= $employee && isset($employee->img) ? $employee->img : "assets/img/usuario.svg" ?>" alt="profile picture" id="profileImg" class="thumbnail">
+                <img src="<?= $employee && isset($employee->img) ? $employee->img : BASE_URL . "/assets/img/usuario.svg" ?>" alt="profile picture" id="profileImg" class="thumbnail">
             </div>
             <div id="profilePicSelect" class="profile__img--selector d-none flex-wrap justify-content-sm-between justify-content-center mt-3">
             </div>
@@ -89,11 +89,11 @@
         </div>
         <?php include('assets/html/footer.html') ?>
     </div>
-    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="<?= BASE_URL ?>/node_modules/jquery/dist/jquery.js"></script>
     <script src="https://kit.fontawesome.com/de217cab6a.js" crossorigin="anonymous"></script>
-    <script src="node_modules/bootstrap/js/dist/index.js" defer></script>
+    <script src="<?= BASE_URL ?>/node_modules/bootstrap/js/dist/index.js" defer></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="assets/js/utils.js"></script>
+    <script src="<?= BASE_URL ?>/assets/js/utils.js"></script>
 </body>
 
 </html>
