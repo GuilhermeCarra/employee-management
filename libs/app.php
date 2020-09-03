@@ -10,10 +10,11 @@ class App {
 
         // If user is logged:
         } else {
-            // Verify if a controller exists on URL, if there's no controller, set controller to employee
+            // Verify if a controller exists on URL, if there's no controller set controller to employee
             if (!isset($_GET['url'])) {
                 header("Location: employeeController/getEmployeesCont");
             } else {
+                // Divides url on a array to separate controller and action
                 $url = $_GET['url'];
                 $url = rtrim($url, '/');
                 $url = explode('/', $url);
@@ -22,16 +23,22 @@ class App {
             $controllerFile = CONTROLLERS . $url[0] . '.php';
 
             if(file_exists($controllerFile)){
+
+                // Require the controller file
                 require_once $controllerFile;
+
+                // Creating controller and model objects with URL information
                 $controller = new $url[0];
                 $controller->loadModel($url[0]);
 
+                // Executing function action based on the URL
                 if(isset($url[1])){
                     $controller->{$url[1]}();
                 } else {
-
+                    // Show error if requested function does not exist
                 }
             } else {
+                // Show error if requested controlelr does not exist
                 $errorMsg = 'Controller "' . $url[0] .  '" file does not exist';
                 require_once(VIEWS . "error/error.php");
             }
