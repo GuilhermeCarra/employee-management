@@ -24,6 +24,7 @@ class App {
             if(file_exists($controllerFile)){
                 require_once $controllerFile;
                 $controller = new $url[0];
+                $controller->loadModel($url[0]);
 
                 if(isset($url[1])){
                     $controller->{$url[1]}();
