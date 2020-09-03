@@ -38,7 +38,7 @@ class App {
                     // Show error if requested function does not exist
                 }
             } else {
-                // Show error if requested controlelr does not exist
+                // Show error if requested controller does not exist
                 $errorMsg = 'Controller "' . $url[0] .  '" file does not exist';
                 require_once(VIEWS . "error/error.php");
             }
