@@ -1,6 +1,6 @@
 <?php
 
-require '../models/avatarsManager.php';
+require_once LIBS . 'classes/controller.php';
 
 class avatarController extends Controller {
 
@@ -14,7 +14,7 @@ class avatarController extends Controller {
 
         $tmp = json_decode(file_get_contents("php://input"), true);
 
-        $results = CallAPI($tmp['request']['url']);
+        $results = $this-> model->CallAPI($tmp['request']['url']);
 
         $images = array();
         foreach ($results as $key => $value) {

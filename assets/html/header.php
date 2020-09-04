@@ -5,7 +5,7 @@
          <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-         <a class="navbar-brand pl-2" href="?controller=employee&action=getEmployeesCont"><img class="logo"
+         <a class="navbar-brand pl-2" href="<?= BASE_URL ?>/employeeController/getEmployeesCont/"><img class="logo"
                src="<?= BASE_URL ?>/assets/img/assembler.png"></a>
          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item mt-2 ml-2">

@@ -181,7 +181,7 @@ function printProfilePics() {
 
       axios({
          method: 'POST',
-         url: 'controllers/avatarController.php',
+         url: '../../avatarController/avatar',
          data: {
             request
          },
