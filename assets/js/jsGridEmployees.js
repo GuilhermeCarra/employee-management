@@ -1,5 +1,3 @@
-console.log(employees);
-
   callGrid(JSON.parse(employees));
 
   function callGrid(employees) {
@@ -20,24 +18,23 @@ console.log(employees);
         insertItem: function (newEmployee) {
           return $.ajax({
             type: "POST",
-            url: "index.php",
+            url: "../../employeeController/addEmployeeAjax",
             dataFilter: function(response) {
-               return JSON.parse(response)
-              },
+              return JSON.parse(response)
+            },
             data: {
               controller: "employee",
               action: "addEmployeeAjax",
-              newEmployee: newEmployee,  
+              newEmployee: newEmployee,
             }
           }).done(function (response) {
 
           });
         },
         deleteItem: function (employee) {
-          
           return $.ajax({
             type: "DELETE",
-            url: "index.php?controller=employee&action=deleteEmployeeAjax",
+            url: "../../employeeController/deleteEmployeeAjax",
             data: {
               deleteId: employee.id
             },
@@ -91,7 +88,8 @@ console.log(employees);
           name: "age",
           title: "Age",
           type: "number",
-          width: 75
+          width: 65,
+          align: "center"
         },
         {
           name: "streetAddress",

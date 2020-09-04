@@ -1,6 +1,5 @@
 <?php
-require LIBS . 'classes/controller.php';
-require MODELS . 'employeeManager.php';
+require_once LIBS . 'classes/controller.php';
 
 class employeeController extends Controller {
    function __construct(){
@@ -9,30 +8,33 @@ class employeeController extends Controller {
 
    function getEmployeesCont() {
 
-       $employees = getEmployees();
+      $employees = $this->model->getEmployees();
 
-       if($employees) require_once VIEWS . "employees/dashboard.php";
+      if($employees) require_once VIEWS . "employees/dashboard.php";
 
-       return $employees;
+      return $employees;
 
    }
 
    function getEmployeeCont($request){
-      $employee = getEmployee($request["id"]);
+      $employee = $this->model->getEmployee($request["id"]);
       return $employee;
    }
 
    function addEmployeeAjax () {
-       echo addEmployee($_POST['newEmployee']);
+      echo $this->model->addEmployee($_POST['newEmployee']);
    }
 
    function deleteEmployeeAjax () {
-       parse_str(file_get_contents("php://input"), $_DELETE);
-       deleteEmployee($_DELETE['deleteId']);
+      parse_str(file_get_contents("php://input"), $_DELETE);
+      $this->model->deleteEmployee($_DELETE['deleteId']);
    }
 
-   function updateEmployeeCont ($request) {
-      echo updateEmployee($request['id'], $request);
+   function updateEmployeeCont() {
+      $url = explode('/', $_GET['url']);
+      $id = isset($url[2]) ? $url[2] : "";
+      $_SESSION['response'] = $this->model->updateEmployee($id, $_REQUEST);
+      header('Location: '.BASE_URL.'/employeeController/addEditEmployee');
    }
 
    function addEditEmployee(){
@@ -40,7 +42,7 @@ class employeeController extends Controller {
       $getId = isset($url[2]);
       $employee = false;
       if($getId){
-         $employee = getEmployee($url[2]);
+         $employee = $this->model->getEmployee($url[2]);
       }
       require_once VIEWS . "employees/employee.php";
    }

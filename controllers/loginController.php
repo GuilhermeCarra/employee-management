@@ -1,7 +1,6 @@
 <?php
 
 require LIBS . 'classes/controller.php';
-require MODELS . 'loginManager.php';
 
 class loginController extends Controller {
 
@@ -10,7 +9,7 @@ class loginController extends Controller {
    }
 
    function loginValidation(){
-      if(userLogin($_REQUEST)){
+      if($this->model->userLogin($_REQUEST)){
          header("Location: ../employeeController/getEmployeesCont/");
       }else{
          header("Location: ../index.php");
@@ -18,10 +17,9 @@ class loginController extends Controller {
    }
 
    function logout(){
-      userLogOut();
+      $this->model->userLogOut();
       header("Location: ../../");
    }
 }
-
 
 ?>
