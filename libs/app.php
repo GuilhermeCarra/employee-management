@@ -1,14 +1,16 @@
 <?php
 
-class App {
+class App
+{
 
-    function __construct(){
+    function __construct()
+    {
 
         // Verify if user is not logged or a login form was not sent shows login page
-        if(!isset($_SESSION["logged"]) && !isset($_POST['email'])){
+        if (!isset($_SESSION["logged"]) && !isset($_POST['email'])) {
             require_once(VIEWS . "main/main.php");
 
-        // If user is logged:
+            // If user is logged:
         } else {
             // Verify if a controller exists on URL, if there's no controller set controller to employee
             if (!isset($_GET['url'])) {
@@ -22,7 +24,7 @@ class App {
 
             $controllerFile = CONTROLLERS . $url[0] . '.php';
 
-            if(file_exists($controllerFile)){
+            if (file_exists($controllerFile)) {
 
                 // Require the controller file
                 require_once $controllerFile;
@@ -32,9 +34,17 @@ class App {
                 $controller->loadModel($url[0]);
 
                 // Executing function action based on the URL
-                if(isset($url[1])){
-                    $controller->{$url[1]}();
+                if (isset($url[1])) {
+
+                    if (method_exists($url[0], $url[1])) {
+                        $controller->{$url[1]}();
+                    } else {
+                        $errorMsg = 'Method"' . $url[1] .  '" file does not exist';
+                        require_once(VIEWS . "error/error.php");
+                    }
                 } else {
+                    $errorMsg = 'Method"' . $url[1] .  '" file does not exist';
+                    require_once(VIEWS . "error/error.php");
                     // Show error if requested function does not exist
                 }
             } else {
@@ -43,9 +53,5 @@ class App {
                 require_once(VIEWS . "error/error.php");
             }
         }
-
     }
-
 }
-
-?>
