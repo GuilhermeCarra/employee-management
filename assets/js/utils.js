@@ -14,6 +14,7 @@ const alertMsg = document.querySelector('#formErrMsg');
 const avatar = document.querySelector('#profileImg');
 const avatarCont = document.querySelector('#profilePicCont');
 const avatarSel = document.querySelector('#profilePicSelect');
+const avatarInput = document.querySelector('#avatarInp');
 
 if ($("#employeeForm")) {
    $("#dashboardTitle").toggleClass("activated innactive");
@@ -171,7 +172,7 @@ $('#profilePicCont').click(function () {
 });
 
 function printProfilePics() {
-
+   avatar.src = '../../assets/img/loading.gif';
    let limit = (avatar.src !== 'https://image.flaticon.com/icons/svg/753/753345.svg') ? '4' : '5';
    let genderVal = (gender.value === 'man') ? 'male' : 'female';
 
@@ -186,7 +187,8 @@ function printProfilePics() {
             request
          },
       }).then(response => {
-         console.log(response);
+         avatarCont.classList.add('d-none');
+         avatar.src = '../../assets/img/usuario.svg';
          showPicOptions(response.data);
       });
 
@@ -202,6 +204,7 @@ function printProfilePics() {
 }
 
 function showPicOptions(images) {
+
    avatarSel.innerHTML = '';
 
    if (avatar.src !== 'https://image.flaticon.com/icons/svg/753/753345.svg') {
@@ -223,11 +226,30 @@ function showPicOptions(images) {
 
    avatarCont.classList.replace('d-flex', 'd-none');
    avatarSel.classList.replace('d-none', 'd-flex');
+   resizeAvatars();
 }
 
 function chooseImg(src) {
    avatar.src = src;
+   avatarInput.value = src;
    avatar.classList.remove('d-none');
    avatarSel.classList.replace('d-flex', 'd-none');
-   avatarCont.classList.replace('d-none', 'd-flex');
+   avatarCont.classList.remove('d-none');
 }
+
+function resizeAvatars() {
+   $('.thumbnail').each(function(){
+       if(this.complete) {
+           if($(this).width() > $(this).height()) {
+               $(this).addClass('resize-avatar');
+           }
+       }
+       $(this).on("load",function() {
+           if($(this).width() > $(this).height()) {
+               $(this).addClass('resize-avatar');
+           }
+       });
+   });
+}
+
+if ( $("#profilePicCont").length ) resizeAvatars();

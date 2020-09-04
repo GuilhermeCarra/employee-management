@@ -24,7 +24,7 @@
             <form id="employeeForm" class="my-5" name="employeeInfo" method="POST" action="<?= isset($employee) ? BASE_URL."/employeeController/updateEmployeeCont/".$url[2]: BASE_URL."/employeeController/updateEmployeeCont" ?>">
                 <!-- <input type="hidden" name="controller" value="employee">
                 <input type="hidden" name="action" value="updateEmployeeCont"> -->
-                <input type="hidden" name="img" value="<?= $employee && isset($employee->img) ? $employee->img : '' ?>">
+                <input type="hidden" id="avatarInp" name="img" value="<?= $employee && isset($employee->img) ? $employee->img : '' ?>">
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
