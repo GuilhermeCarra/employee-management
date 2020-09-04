@@ -252,4 +252,6 @@ function resizeAvatars() {
    });
 }
 
-if ( $("#profilePicCont").length ) resizeAvatars();
+resizeAvatars();
+$("#employeeNav").addClass("nav-active");
+

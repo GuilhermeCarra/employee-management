@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="<?= CSS ?>/main.css">
 </head>
 
+<body id="dashboardPage">
+
 <div class="main d-flex flex-column justify-content-between">
     <?php include('assets/html/header.php') ?>
     <div class='main__content d-flex justify-content-center align-items-center flex-column'>
@@ -29,6 +31,7 @@
 <script src="<?= BASE_URL ?>/node_modules/bootstrap/dist/js/bootstrap.js"></script>
 <script src="<?= BASE_URL ?>/node_modules/jsgrid/dist/jsgrid.min.js"></script>
 <script src="<?= BASE_URL ?>/assets/js/jsGridEmployees.js"></script>
+<script src="<?= BASE_URL ?>/assets/js/utils.js"></script>
 
 </body>
 

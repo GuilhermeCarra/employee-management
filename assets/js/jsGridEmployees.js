@@ -1,7 +1,7 @@
   callGrid(JSON.parse(employees));
 
   function callGrid(employees) {
-    
+
     $("#jsGrid").jsGrid({
       height: "auto",
       width: "100%",
@@ -131,4 +131,4 @@
 
   }
 
-   
+$("#dashboardNav").addClass("nav-active");

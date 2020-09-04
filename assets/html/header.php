@@ -9,10 +9,10 @@
                src="<?= BASE_URL ?>/assets/img/assembler.png"></a>
          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item mt-2 ml-2">
-               <a class="mr-3 text-body nav-li" href="<?= BASE_URL ?>/employeeController/getEmployeesCont/">Dashboard</a>
+               <a id="dashboardNav" class="mr-3 text-body nav-li" href="<?= BASE_URL ?>/employeeController/getEmployeesCont/">Dashboard</a>
             </li>
             <li class="nav-item mt-2">
-               <a class="mr-3 text-body nav-li" href="<?= BASE_URL ?>/employeeController/addEditEmployee/">Employee</a>
+               <a id="employeeNav" class="mr-3 text-body nav-li" href="<?= BASE_URL ?>/employeeController/addEditEmployee/">Employee</a>
             </li>
             <!-- LOGOUT BUTTON -->
             <form method="POST" action="<?= BASE_URL ?>/loginController/logout/">

@@ -16,7 +16,12 @@
 
 .logOut,
 .nav-li {
+    color: gainsboro !important;
     font-size: 14px;
+}
+
+.nav-active {
+    color: black !important;
 }
 
 /* employee.php -- AVATAR STYLES START */

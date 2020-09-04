@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="<?= CSS ?>/main.css">
 </head>
 
-<body>
+<body id="employeePage">
     <div class="main d-flex flex-column justify-content-between">
         <?php include('assets/html/header.php') ?>
         <div class='main__content d-flex justify-content-center align-items-center flex-column'>
