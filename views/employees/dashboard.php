@@ -31,7 +31,6 @@
 <script src="<?= BASE_URL ?>/node_modules/bootstrap/dist/js/bootstrap.js"></script>
 <script src="<?= BASE_URL ?>/node_modules/jsgrid/dist/jsgrid.min.js"></script>
 <script src="<?= BASE_URL ?>/assets/js/jsGridEmployees.js"></script>
-<script src="<?= BASE_URL ?>/assets/js/utils.js"></script>
 
 </body>
 
