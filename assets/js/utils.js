@@ -41,7 +41,6 @@ function alertsMsg(response) {
       alertMsg.classList.add('alert-success');
       alertMsg.classList.replace('d-none', 'd-flex');
       setTimeout(() => {
-         //let newUrl = window.location.href.replace('index.php?controller=employee&action=getEmployeesCont')
          window.location.href = path+'/employeeController/getEmployeesCont/';
          alertMsg.classList.replace('d-flex', 'd-none');
          alertMsg.classList.remove('alert-success');

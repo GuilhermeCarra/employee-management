@@ -28,7 +28,9 @@
               newEmployee: newEmployee,
             }
           }).done(function (response) {
-
+            if (Object.prototype.toString.call(response) != '[object String]') {
+              alertsMsg('Success creating employee');
+            }
           });
         },
         deleteItem: function (employee) {
@@ -39,8 +41,7 @@
               deleteId: employee.id
             },
           }).done(function (response) {
-            console.log(response)
-            //alert("Employee named deleted successfully!");
+            alertsMsg(response);
           });
         }
       },
@@ -116,3 +117,27 @@
   }
 
 $("#dashboardNav").addClass("nav-active");
+
+function alertsMsg(response) {
+
+  const alertMsg = document.querySelector('#dashboardErrMsg');
+  alertMsg.classList.remove('alert-danger','alert-success');
+
+  if (response.includes('Success') || parseInt(response) >= 0) {
+      alertMsg.textContent = response;
+      alertMsg.classList.add('alert-success');
+      alertMsg.classList.replace('d-none', 'd-flex');
+      setTimeout(() => {
+        alertMsg.classList.replace('d-flex', 'd-none');
+        alertMsg.classList.remove('alert-success');
+      }, 3000);
+  } else {
+      alertMsg.textContent = response;
+      alertMsg.classList.add('alert-danger');
+      alertMsg.classList.replace('d-none', 'd-flex');
+      setTimeout(() => {
+        alertMsg.classList.replace('d-flex', 'd-none');
+        alertMsg.classList.remove('alert-danger');
+      }, 3000);
+  }
+}

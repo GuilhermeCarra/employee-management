@@ -27,7 +27,8 @@ class employeeController extends Controller {
 
    function deleteEmployeeAjax () {
       parse_str(file_get_contents("php://input"), $_DELETE);
-      $this->model->deleteEmployee($_DELETE['deleteId']);
+      $response = $this->model->deleteEmployee($_DELETE['deleteId']);
+      echo $response;
    }
 
    function updateEmployeeCont() {

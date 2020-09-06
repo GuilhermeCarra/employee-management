@@ -23,7 +23,9 @@ class employeeModel extends Model {
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             echo json_encode($result);
          }
-      };
+      } else {
+         return 'Error: Could not create employee. Please, try again later.';
+      }
    }
 
    function getEmployees() {
@@ -41,7 +43,11 @@ class employeeModel extends Model {
       $conn = connectDatabase();
 
       $stmt = $conn->prepare("DELETE FROM employees WHERE id=". $id);
-      $stmt->execute();
+      if($stmt->execute()){
+         return 'Success deleting employee!';
+      } else {
+         return 'Error: Employee could not be deleted. Please, try again later.';
+      };
    }
 
    function getEmployee(string $id) {

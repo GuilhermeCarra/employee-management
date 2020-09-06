@@ -14,10 +14,14 @@
 
 <body id="dashboardPage">
 
-<div class="main d-flex flex-column justify-content-between">
-    <?php include('assets/html/header.php') ?>
-    <div class='main__content d-flex justify-content-center align-items-center flex-column'>
-        <div class="container mt-4" id="jsGrid">
+    
+    <div class="main d-flex flex-column justify-content-between">
+        <?php include('assets/html/header.php') ?>
+        <div id="dashboardErrMsg" class="d-none errorMsg mb-4 align-items-center justify-content-center alert">
+            <span></span>
+        </div>
+        <div class='main__content d-flex justify-content-center align-items-center flex-column'>
+            <div class="container mt-4" id="jsGrid">
             <script type='text/javascript'>
                 <?php echo "var employees = '".$employees."';" ?>
             </script>
