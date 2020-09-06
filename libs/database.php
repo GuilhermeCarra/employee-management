@@ -6,6 +6,7 @@ function connectDatabase()
 {
    $conn = new PDO("mysql:host=" . HOST . ";", USER, PASSWORD);
 
+   // Query to use employeev4 database
    if ($conn && $conn->query("USE employeesv4")) {
       return $conn;
    } else
