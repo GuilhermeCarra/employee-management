@@ -6,13 +6,13 @@ function connectDatabase()
 {
    $conn = new PDO("mysql:host=" . HOST . ";", USER, PASSWORD);
 
-   if ($conn && $conn->query("USE employeesv3")) {
+   if ($conn && $conn->query("USE employeesv4")) {
       return $conn;
-   } else 
-   if ($conn && !$conn->query("USE employeesv3")) {
+   } else
+   // If there's no employeev4 database, execute init.sql query to create it
+   if ($conn && !$conn->query("USE employeesv4")) {
       $query = file_get_contents("config/init.sql");
       $conn->exec($query);
       return $conn;
-   } else {
    }
 }
