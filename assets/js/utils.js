@@ -26,44 +26,6 @@ document.querySelector('#submitForm').addEventListener('click', e => {
    e.preventDefault();
 
    if (checkInputs()) {
-      /* $.ajax({
-         type: 'post',
-         url: 'index.php?controller=employee&action=updateEmployeeCont',
-         data: {
-            controller: "employee",
-            action: "updateEmployeeCont",
-            id: id.value,
-            name: name.value,
-            lastName: surname.value,
-            email: email.value,
-            gender: gender.value,
-            city: city.value,
-            phoneNumber: phone.value,
-            postalCode: po.value,
-            state: state.value,
-            streetAddress: address.value,
-            age: age.value,
-            img: avatar.src,
-         }
-      }).done(function (response) {
-         console.log(`Response: ${response}`);
-         if (response.includes('modified') || parseInt(response) >= 0) {
-            alertMsg.textContent = ((response.includes('modified')) ? 'All changes applied! ' : `New employee created (id ${response.data}). `) + 'Redirecting to main page...';
-            alertMsg.classList.remove('alert-danger');
-            alertMsg.classList.add('alert-success');
-            alertMsg.classList.replace('d-none', 'd-flex');
-            setTimeout(() => {
-               //let newUrl = window.location.href.replace('index.php?controller=employee&action=getEmployeesCont')
-               window.location.href = 'index.php?controller=employee&action=getEmployeesCont';
-               alertMsg.classList.replace('d-flex', 'd-none');
-               alertMsg.classList.remove('alert-success');
-            }, 3000);
-         } else {
-            alertMsg.textContent = 'Oops, error ' + response.status + '. Please, try again later.';
-            alertMsg.classList.add('alert-danger');
-            alertMsg.classList.replace('d-none', 'd-flex');
-         }
-      }); */
       document.getElementById("employeeForm").submit();
    } else {
       alertMsg.textContent = 'Please, correct the highlighted errors.';
