@@ -43,6 +43,10 @@ loginManager.php // this file contains a list of methods that handle login valid
 sessionHelper.php // code to check if the user session has expired (10 minutes per session).
 ```
 
+## Dashboard page instructions
+
+![Dashboard instructions](assets/img/readme/dashboard.png?raw=true "Dashboard Instructions")
+
 ## External libraries
 
 All them must be installed with the npm here you have a package.json take a look please.
@@ -59,3 +63,8 @@ For employees avatars this application uses [this images api](https://uifaces.co
 This web service in the version free that is which we are going to use has limitations. It is **5 requests** per minute or **30 requests** in one hour.
 
 [Read the doc!](https://uifaces.co/api-docs)
+
+## Authors
+
+* **Guilherme Carra** - [GitHub](https://github.com/GuilhermeCarra/) - [Glitch](https://glitch.com/@GuilhermeCarra/)
+* **Sandra Mitjans** - [GitHub](https://github.com/sandramitjans) - [Code Assembler](https://code.assemblerschool.com/sandra-mitjans)
