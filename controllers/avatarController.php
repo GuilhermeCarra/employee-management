@@ -5,7 +5,7 @@ require_once LIBS . 'classes/controller.php';
 class avatarController extends Controller {
 
     function __construct(){
-       parent::__construct();
+        parent::__construct();
     }
 
         public function avatar(){

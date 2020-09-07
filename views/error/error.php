@@ -17,7 +17,6 @@
 <div class="main d-flex flex-column justify-content-between">
   <?php include('assets/html/header.php') ?>
   <div class='main__content d-flex justify-content-center align-items-center flex-column'>
-
     <div class="container" id="error-message">
       <div id="error-message" class="d-flex justify-content-center align-items-center">
         <i class="fas fa-exclamation-triangle fa-4x"></i>

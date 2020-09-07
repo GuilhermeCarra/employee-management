@@ -200,16 +200,16 @@ function chooseImg(src) {
 
 function resizeAvatars() {
    $('.thumbnail').each(function(){
-       if(this.complete) {
-           if($(this).width() > $(this).height()) {
-               $(this).addClass('resize-avatar');
-           }
-       }
-       $(this).on("load",function() {
-           if($(this).width() > $(this).height()) {
-               $(this).addClass('resize-avatar');
-           }
-       });
+      if(this.complete) {
+         if($(this).width() > $(this).height()) {
+            $(this).addClass('resize-avatar');
+         }
+      }
+      $(this).on("load",function() {
+         if($(this).width() > $(this).height()) {
+            $(this).addClass('resize-avatar');
+         }
+      });
    });
 }
 
