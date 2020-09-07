@@ -64,6 +64,16 @@ This web service in the version free that is which we are going to use has limit
 
 [Read the doc!](https://uifaces.co/api-docs)
 
+## Used tools
+
+* **PHP** *- communication and operations with Employees SQL database*
+* **mySQL** *- database manipulation*
+* **jQuery** *- jsGrid table, visual aspects*
+* **Bootstrap** *- styles framework*
+* **NPM** *- installing dependencies*
+* **git** *- project version controller*
+* **VS Code** *- code editor*
+
 ## Authors
 
 * **Guilherme Carra** - [GitHub](https://github.com/GuilhermeCarra/) - [Glitch](https://glitch.com/@GuilhermeCarra/)
