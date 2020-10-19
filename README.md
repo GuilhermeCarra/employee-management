@@ -13,6 +13,9 @@
 7. External web service to get employees images
 8. Employee avatar through web service images
 
+### Screenshots
+
+![screenshots](https://live.staticflickr.com/65535/50506732856_828db3d2c3_k.jpg)
 
 ### File structure
 This file structure has a specific purpose.
